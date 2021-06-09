@@ -1,6 +1,7 @@
 import 'package:adahi_eidapp/screens/home_screens/home_screens.dart';
 import 'package:adahi_eidapp/screens/login_screen/login_cubit/login_cubit.dart';
 import 'package:adahi_eidapp/screens/login_screen/login_cubit/login_states.dart';
+import 'package:adahi_eidapp/screens/start-page_screen/mainpage.dart';
 import 'package:adahi_eidapp/screens/welcome_screen/welcome_screen.dart';
 import 'package:adahi_eidapp/shared/app_enum.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
@@ -153,7 +154,7 @@ class LoginScreen extends StatelessWidget {
           color: ToastColors.ERROR,
         );
       } else {
-        navigateTo(context, HomeScreens());
+        navigateTo(context, FirstPage());
       }
     }
   }
