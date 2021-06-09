@@ -1,14 +1,9 @@
 class MeatModel {
   String meatID;
-  String meatType;
-  String meatService;
+  List meatType;
   double meatPrice;
   String meatDescription;
+  List meatServices;
 
-  MeatModel(
-      {this.meatID,
-      this.meatType,
-      this.meatService,
-      this.meatPrice,
-      this.meatDescription});
+  MeatModel({this.meatID, this.meatType, this.meatPrice, this.meatDescription});
 }

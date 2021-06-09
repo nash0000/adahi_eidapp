@@ -24,13 +24,12 @@ class CloudService {
         kUserPhone: userModel.userPhone,
       });
 
-  addMeat(MeatModel meat) {
-    _fireStoreInstance.collection(kMeatCollectionName).add({
-      kMeatID: meat.meatID,
-      kMeatType: meat.meatType,
-      kMeatPrice: meat.meatPrice,
-      kMeatService: meat.meatService,
-      kMeatDescription: meat.meatDescription,
+  static Future<void> addMeat({@required MeatModel meatModel}) async {
+    await _fireStoreInstance.collection(kMeatCollectionName).add({
+      kMeatID: meatModel.meatID,
+      kMeatType: meatModel.meatType,
+      kMeatPrice: meatModel.meatPrice,
+      kMeatDescription: meatModel.meatDescription,
     });
   }
 
