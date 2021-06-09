@@ -1,3 +1,4 @@
+import 'package:adahi_eidapp/models/meat_model.dart';
 import 'package:adahi_eidapp/models/user_model.dart';
 import 'package:adahi_eidapp/shared/app_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,4 +23,18 @@ class CloudService {
         kUserAddress: userModel.userAddress,
         kUserPhone: userModel.userPhone,
       });
+
+  addMeat(MeatModel meat) {
+    _fireStoreInstance.collection(kMeatCollectionName).add({
+      kMeatID: meat.meatID,
+      kMeatType: meat.meatType,
+      kMeatPrice: meat.meatPrice,
+      kMeatService: meat.meatService,
+      kMeatDescription: meat.meatDescription,
+    });
+  }
+
+  Stream<QuerySnapshot> loadMeats() {
+    return _fireStoreInstance.collection(kMeatCollectionName).snapshots();
+  }
 }
