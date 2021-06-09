@@ -4,6 +4,7 @@ class OrderModel {
   String userEmail;
   double orderTotalPrice;
   String orderAddress;
+  String availableMeatID;
 
   OrderModel({
     this.orderID,
@@ -11,5 +12,6 @@ class OrderModel {
     this.userEmail,
     this.orderTotalPrice,
     this.orderAddress,
+    this.availableMeatID,
   });
 }
