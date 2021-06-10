@@ -5,5 +5,10 @@ class MeatModel {
   String meatDescription;
   List meatServices;
 
-  MeatModel({this.meatID, this.meatType, this.meatPrice, this.meatDescription});
+  MeatModel(
+      {this.meatID,
+      this.meatType,
+      this.meatPrice,
+      this.meatDescription,
+      this.meatServices});
 }
