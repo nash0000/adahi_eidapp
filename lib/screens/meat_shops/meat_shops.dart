@@ -12,7 +12,9 @@ class MeatShops extends StatelessWidget {
         title: Text('Meat Shops'),
       ),
       body: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection('butchers').snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection(kButcherCollectionName)
+              .snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) return Text('Error: ${snapshot.error}');
@@ -35,8 +37,9 @@ class MeatShops extends StatelessWidget {
                     }
 
                     return ListTile(
-                      title: Text(document['butcherShopName']),
-                      subtitle: Text(document['butcherPhone']),
+                      leading: Image.network(document['img']),
+                      //title: Text(document['butcherShopName']),
+                      subtitle: Text(''),
                     );
                   }).toList(),
                 );
@@ -59,3 +62,6 @@ class MeatShops extends StatelessWidget {
     );
   }
 }
+
+// title: Text(document['butcherShopName']),
+// subtitle: Text(document['butcherPhone']),
