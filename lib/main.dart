@@ -1,4 +1,5 @@
 import 'package:adahi_eidapp/screens/home_screens/home_cubit/home_cubit.dart';
+import 'package:adahi_eidapp/screens/meat_shops/meat_shops.dart';
 import 'package:adahi_eidapp/screens/sign_up_screen/sign_up_cubit/sign_up_cubit.dart';
 import 'package:adahi_eidapp/screens/sign_up_screen/sign_up_screen.dart';
 import 'package:adahi_eidapp/screens/welcome_screen/welcome_screen.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: kDefaultColor,
         ),
-        home: WelcomeScreen(),
+        home: MeatShops(),
+        // WelcomeScreen(),
       ),
     );
   }

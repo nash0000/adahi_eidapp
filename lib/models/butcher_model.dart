@@ -6,6 +6,7 @@ class ButcherModel {
   String butcherAddress;
   String butcherShopName;
   String butcherPassword;
+  String img;
 
   ButcherModel({
     this.butcherID,
@@ -15,5 +16,6 @@ class ButcherModel {
     this.butcherPassword,
     this.butcherArea,
     this.butcherShopName,
+    this.img,
   });
 }

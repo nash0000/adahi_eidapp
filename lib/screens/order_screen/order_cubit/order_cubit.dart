@@ -12,11 +12,11 @@ class OrderCubit extends Cubit<OrderStates> {
 
   static OrderCubit get(context) => BlocProvider.of(context);
 
-  loadMeats({@required MeatModel meatModel}) {
-    emit(OrderLoadingState());
-
-    CloudService.addMeat(meatModel: meatModel).then((value) {}).catchError(
-          (error) => emit(OrderErrorState(error.toString())),
-        );
-  }
+  // loadMeats({@required MeatModel meatModel}) {
+  //   emit(OrderLoadingState());
+  //
+  //   CloudService.addMeat(meatModel: meatModel).then((value) {}).catchError(
+  //         (error) => emit(OrderErrorState(error.toString())),
+  //       );
+  // }
 }

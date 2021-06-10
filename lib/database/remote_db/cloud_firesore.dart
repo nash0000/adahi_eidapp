@@ -24,16 +24,16 @@ class CloudService {
         kUserPhone: userModel.userPhone,
       });
 
-  static Future<void> addMeat({@required MeatModel meatModel}) async {
-    await _fireStoreInstance.collection(kMeatCollectionName).add({
-      kMeatID: meatModel.meatID,
-      kMeatType: meatModel.meatType,
-      kMeatPrice: meatModel.meatPrice,
-      kMeatDescription: meatModel.meatDescription,
-    });
-  }
+  // static Future<void> addMeat({@required MeatModel meatModel}) async {
+  //   await _fireStoreInstance.collection(kMeatCollectionName).add({
+  //     kMeatID: meatModel.meatID,
+  //     kMeatType: meatModel.meatType,
+  //     kMeatPrice: meatModel.meatPrice,
+  //     kMeatDescription: meatModel.meatDescription,
+  //   });
+  // }
 
-  Stream<QuerySnapshot> loadMeats() {
-    return _fireStoreInstance.collection(kMeatCollectionName).snapshots();
-  }
+  // Stream<QuerySnapshot> loadMeats() {
+  //   return _fireStoreInstance.collection(kMeatCollectionName).snapshots();
+  // }
 }

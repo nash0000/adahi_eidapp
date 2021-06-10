@@ -16,6 +16,7 @@ const String kButcherPassword = 'butcherPassword';
 const String kButcherShopAddress = 'butcherAddress';
 const String kButcherPhone = 'butcherPhone';
 const String kButcherArea = 'area';
+const String kButcherImg = 'img';
 
 const String kAreaCollectionName = 'areas';
 const String kAreaName = 'areaName';
