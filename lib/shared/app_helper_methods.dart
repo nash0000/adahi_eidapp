@@ -103,3 +103,20 @@ Future<dynamic> navigateAndFinish(context, widget) =>
       ),
       (Route<dynamic> route) => false,
     );
+
+//alert design
+showLoading(context) {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Please wait ..'),
+          content: Container(
+            height: 50.0,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
+        );
+      });
+}

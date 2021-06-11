@@ -1,3 +1,4 @@
+import 'package:adahi_eidapp/models/butcher_model.dart';
 import 'package:adahi_eidapp/models/meat_model.dart';
 import 'package:adahi_eidapp/models/user_model.dart';
 import 'package:adahi_eidapp/shared/app_strings.dart';
@@ -25,15 +26,35 @@ class CloudService {
       });
 
   static Future<void> addMeat({@required MeatModel meatModel}) async {
-    await _fireStoreInstance.collection(kMeatCollectionName).add({
+    await _fireStoreInstance
+        .collection(kMeatCollectionName)
+        .doc(meatModel.meatID)
+        .set({
       kMeatID: meatModel.meatID,
       kMeatType: meatModel.meatType,
       kMeatPrice: meatModel.meatPrice,
       kMeatDescription: meatModel.meatDescription,
+      kMeatService: meatModel.meatServices,
     });
   }
 
   Stream<QuerySnapshot> loadMeats() {
     return _fireStoreInstance.collection(kMeatCollectionName).snapshots();
   }
+
+  static Future<void> saveButcherInfo(
+          {@required ButcherModel butcherModel}) async =>
+      await _fireStoreInstance
+          .collection(kButcherCollectionName)
+          .doc(butcherModel.butcherID)
+          .set({
+        kButcherID: butcherModel.butcherID,
+        kButcherShopName: butcherModel.butcherShopName,
+        kButcherEmail: butcherModel.butcherEmail,
+        kButcherPassword: butcherModel.butcherPassword,
+        kButcherShopAddress: butcherModel.butcherAddress,
+        kButcherPhone: butcherModel.butcherPhone,
+        kButcherArea: butcherModel.butcherArea,
+        kButcherImg: butcherModel.img,
+      });
 }
