@@ -1,3 +1,5 @@
+import 'package:adahi_eidapp/screens/order_screen/order_screen.dart';
+import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:adahi_eidapp/shared/app_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +17,9 @@ class _MeatShops extends State<MeatShops> {
         .get()
         .then((value) => {
               value.docs.forEach((element) {
-                // print(element.data()['area'].toString());
-                print(element.data()['butcherPhone']);
+                //  print("butcherShop Name ${element.data()['butcherShopName']}");
+                print("butcherPhone ${element.data()['butcherPhone']}");
+                // print("butcherShop area ${element.data()['area'].toString()}");
                 print("=================================");
               })
             });
@@ -104,11 +107,10 @@ class _MeatShops extends State<MeatShops> {
 ///////3333
 
 Widget buildButcherItem(context) => GestureDetector(
-      // onTap: () {
-      //   navigateTo(context, ProductDetail());
-      //   //navigateTo(context, RegisterScreen());
-      // },
-
+      onTap: () {
+        navigateTo(context, OrderScreen());
+        //navigateTo(context, RegisterScreen());
+      },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: Container(
