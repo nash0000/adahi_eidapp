@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Login',
+                              'Adahi ',
                               style: Theme.of(context)
                                   .textTheme
                                   .headline3

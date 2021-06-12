@@ -76,7 +76,7 @@ class _MeatShops extends State<MeatShops> {
                           CircleAvatar(
                             child: Image.network(
                               "${butchers[index]['img']}",
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                             ),
                             radius: 25.0,
                           ),

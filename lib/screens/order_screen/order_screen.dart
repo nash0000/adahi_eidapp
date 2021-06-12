@@ -15,152 +15,158 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   int selectedValue = 0;
   bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Order Page'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ListTile(
-              leading: CircleAvatar(
-                radius: 25.0,
-                backgroundColor: Colors.blue,
-              ),
-              title: Text('shop name'),
-              subtitle: Text('description'),
-            ),
-            Divider(
-              color: Colors.grey,
-              thickness: 1.0,
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Container(
-                decoration: BoxDecoration(color: Colors.grey[200]),
-                width: 200.0,
-                // height: 10.0,
-                alignment: Alignment.center,
-                child: Row(
-                  children: [
-                    SizedBox(),
-                    DropdownButton(
-                      items: [],
-                    ),
-                  ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Order Page'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ListTile(
+                leading: CircleAvatar(
+                  radius: 25.0,
+                  backgroundColor: Colors.blue,
                 ),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              // Text(' : Service  '),
-              Container(
-                decoration: BoxDecoration(color: Colors.grey[200]),
-                width: 200.0,
-                // height: 10.0,
-                alignment: Alignment.center,
-                child: Row(
-                  children: [
-                    SizedBox(),
-                    DropdownButton(
-                      items: [],
-                    ),
-                  ],
-                ),
+                title: Text('shop name'),
+                subtitle: Text('description'),
               ),
               Divider(
                 color: Colors.grey,
                 thickness: 1.0,
               ),
-            ]),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              '  Service :  ',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              Row(
-                children: [
-                  Text(' small pieces '),
-                  Checkbox(
-                      value: isChecked,
-                      onChanged: (checked) {
-                        checked = isChecked;
-                      }),
-                ],
-              ),
               SizedBox(
-                width: 10.0,
+                height: 10.0,
               ),
-              Row(
-                children: [
-                  Text(' big pieces '),
-                  Checkbox(
-                      value: isChecked,
-                      onChanged: (checked) {
-                        checked = isChecked;
-                      }),
-                ],
-              ),
-            ]),
-            Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              Row(
-                children: [
-                  Text(' finely chopped'),
-                  Checkbox(
-                      value: isChecked,
-                      onChanged: (checked) {
-                        checked = isChecked;
-                      }),
-                ],
-              ),
+              Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                Container(
+                  decoration: BoxDecoration(color: Colors.grey[200]),
+                  width: 200.0,
+                  // height: 10.0,
+                  alignment: Alignment.center,
+                  child: Row(
+                    children: [
+                      SizedBox(),
+                      DropdownButton(
+                        items: [],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                // Text(' : Service  '),
+                Container(
+                  decoration: BoxDecoration(color: Colors.grey[200]),
+                  width: 200.0,
+                  // height: 10.0,
+                  alignment: Alignment.center,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      DropdownButton(
+                        items: [],
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(
+                  color: Colors.grey,
+                  thickness: 1.0,
+                ),
+              ]),
               SizedBox(
-                width: 10.0,
+                height: 10.0,
               ),
-              Row(
-                children: [
-                  Text(' coarsely chopped '),
-                  Checkbox(
-                      value: isChecked,
-                      onChanged: (checked) {
-                        checked = isChecked;
-                      }),
-                ],
-              ),
-            ]),
-            Divider(
-              color: Colors.grey,
-              thickness: 1.0,
-            ),
-            // Transform.scale(
-            //   scale: 1.5,
-            //   child:
-            RadioListTile<int>(
-              value: 1,
-              groupValue: selectedValue,
-              title: Text(
-                'Delivery ? ',
+              Text(
+                '  Service :  ',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              onChanged: (value) => setState(() => selectedValue),
-            ),
-            // ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Divider(
-              color: Colors.grey,
-              thickness: 1.0,
-            ),
-          ],
+
+              Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                Row(
+                  children: [
+                    Text(' small pieces '),
+                    Checkbox(
+                        value: isChecked,
+                        onChanged: (checked) {
+                          checked = isChecked;
+                        }),
+                  ],
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Row(
+                  children: [
+                    Text(' big pieces '),
+                    Checkbox(
+                        value: isChecked,
+                        onChanged: (checked) {
+                          checked = isChecked;
+                        }),
+                  ],
+                ),
+              ]),
+              Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                Row(
+                  children: [
+                    Text(' finely chopped'),
+                    Checkbox(
+                        value: isChecked,
+                        onChanged: (checked) {
+                          checked = isChecked;
+                        }),
+                  ],
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Row(
+                  children: [
+                    Text(' coarsely chopped '),
+                    Checkbox(
+                        value: isChecked,
+                        onChanged: (checked) {
+                          checked = isChecked;
+                        }),
+                  ],
+                ),
+              ]),
+              Divider(
+                color: Colors.grey,
+                thickness: 1.0,
+              ),
+              // Transform.scale(
+              //   scale: 1.5,
+              //   child:
+              RadioListTile<int>(
+                value: 1,
+                groupValue: selectedValue,
+                title: Text(
+                  'Delivery ? ',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                onChanged: (value) => setState(() => selectedValue),
+              ),
+              // ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Divider(
+                color: Colors.grey,
+                thickness: 1.0,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -168,23 +174,3 @@ class _OrderScreenState extends State<OrderScreen> {
 }
 
 //%%%%%%%%%%%%%
-
-// class OrderScreen extends StatefulWidget {
-//   static String id = 'OrderScreen';
-//
-//   @override
-//   _OrderScreenState createState() => _OrderScreenState();
-// }
-//
-// class _OrderScreenState extends State<OrderScreen> {
-//   final _cloudService = CloudService();
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     bool isChecked = false;
-//     return Scaffold(
-//       backgroundColor: kSecondaryColor,
-//       body: Column(),
-//     );
-//   }
-// }

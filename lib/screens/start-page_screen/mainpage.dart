@@ -3,8 +3,12 @@
 //import 'package:adahi_app/shared/components/components.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:adahi_eidapp/screens/meat_shops/meat_shops.dart';
 import 'package:adahi_eidapp/screens/start-page_screen/navigationdrawerwidget.dart';
 import 'package:adahi_eidapp/screens/start-page_screen/navigationprovider.dart';
+import 'package:adahi_eidapp/shared/app_helper_methods.dart';
+import 'package:adahi_eidapp/shared/app_strings.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -130,6 +134,84 @@ class _MainPageState extends State<MainPage> {
             SizedBox(
               height: 20.0,
             ),
+            StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection(kAreaCollectionName)
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (!snapshot.hasData) {
+                    Text("loading .... ");
+                  } else {
+                    List<DropdownMenuItem> areaItems = [];
+                    for (int i = 0; i < snapshot.data.docs.length; i++) {
+                      DocumentSnapshot snap = snapshot.data.docs[i];
+                      areaItems.add(
+                        DropdownMenuItem(
+                          child: Text(
+                            snap[kAreaName],
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          value: "${snap.id.toString()}",
+                          //  areaItems,"${snap.id}",
+                        ),
+                      );
+                    }
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(null),
+                        Container(
+                          margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                          padding: EdgeInsets.only(
+                              left: 15.0, right: 15.0, top: 5.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              25,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 2,
+                              ),
+                            ],
+                            // border: Border.all(
+                            //   color: Colors.teal,
+                            //   width: 1,
+                            // ),
+                          ),
+                          child: Center(
+                            child: Column(
+                              children: [
+                                DropdownButton(
+                                  dropdownColor: Colors.teal[400],
+                                  items: areaItems,
+                                  // Text(item['title']),
+                                  //areaItems,
+                                  onChanged: (areaValue) {
+                                    setState(() {
+                                      selectedAreas = areaValue;
+
+                                      navigateTo(context, MeatShops());
+                                    });
+                                  },
+                                  value: selectedAreas,
+                                  //selectedAreas,
+                                  isExpanded: false,
+                                  hint: Text("choose your place please!"),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                  return Container();
+                }),
           ],
         ),
       );
