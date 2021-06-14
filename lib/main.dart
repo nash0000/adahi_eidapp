@@ -36,7 +36,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: kDefaultColor,
         ),
-        home: StartPage(),
+        home: WelcomeScreen(),
+        //TestScreen(),
+        //StartPage(),
         //TestScreen(),
         //WelcomeScreen(),
         //MeatShops(),

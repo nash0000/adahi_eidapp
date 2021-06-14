@@ -85,7 +85,7 @@ class NavigationDrawerWidget extends StatelessWidget {
 
     switch (index) {
       case 0:
-        navigateTo(HomeScreens());
+        //  navigateTo(HomeScreens());
         break;
         // case 1:
         //  navigateTo(SettingsScreen());

@@ -168,8 +168,11 @@ class Category extends StatelessWidget {
       padding: const EdgeInsets.all(2.0),
       child: InkWell(
         onTap: () {},
-        child: ListTile(
-          title: Text('hello'),
+        child: Container(
+          width: 100.0,
+          child: ListTile(
+            title: Text('hello'),
+          ),
         ),
       ),
     );

@@ -12,22 +12,25 @@ class MeatShops extends StatefulWidget {
 
 class _MeatShops extends State<MeatShops> {
   List butchers = [];
+  bool isLoading = true;
   CollectionReference butcherRef =
       FirebaseFirestore.instance.collection(kButcherCollectionName);
 
-  getData() async {
+  Future<List<QueryDocumentSnapshot>> getData() async {
     var responsebody = await butcherRef.get();
-    responsebody.docs.forEach((element) {
-      setState(() {
-        butchers.add(element.data());
-      });
-    });
-    print(butchers);
+    return responsebody.docs;
   }
 
   @override
   void initState() {
-    getData();
+    getData().then((value) {
+      butchers.addAll(value);
+      isLoading = false;
+      print('==========================${butchers.first['area']}');
+      print('==========================${butchers.length}');
+
+      setState(() {});
+    });
     super.initState();
   }
 
@@ -90,11 +93,10 @@ class _MeatShops extends State<MeatShops> {
                                 Row(
                                   children: [
                                     Expanded(
-                                      child: butchers.isEmpty ||
-                                              butchers == null
+                                      child: isLoading == true
                                           ? Text("loading")
                                           : Text(
-                                              "${butchers[index][kButcherShopName]}",
+                                              "${butchers[index]['butcherShopName'] ?? 'nash'}",
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(

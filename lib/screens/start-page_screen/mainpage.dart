@@ -51,167 +51,184 @@ class _MainPageState extends State<MainPage> {
           backgroundColor: Colors.teal,
           title: Text(FirstPage.title),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
+        body: Stack(
+          children: [
             Container(
-              alignment: Alignment.topCenter,
-              margin: EdgeInsets.only(
-                  bottom: 100.0, top: 100.0, left: 10.0, right: 10.0),
-              child: Text(
-                "choose  your place",
-                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20.0),
+              decoration: BoxDecoration(
+                color: const Color(0xff7c94b6),
+                image: DecorationImage(
+                  image: AssetImage('assets/images/sheep3.jpg'),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                      Colors.white.withOpacity(0.5), BlendMode.dstATop),
+                  // BlendMode.dstATop,),
+                ),
               ),
             ),
-            /////////////////////////////////
-            Container(
-              margin: EdgeInsets.only(left: 10.0, right: 10.0),
-              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 5.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  25,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.topCenter,
+                  margin: EdgeInsets.only(
+                      bottom: 100.0, top: 100.0, left: 10.0, right: 10.0),
+                  child: Text(
+                    "choose  your place",
+                    style:
+                        TextStyle(fontWeight: FontWeight.w800, fontSize: 20.0),
+                  ),
                 ),
-                border: Border.all(
-                  color: Colors.teal,
-                  width: 1,
-                ),
-              ),
-              // color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Expanded(
-                    child: DropdownButtonHideUnderline(
-                      child: ButtonTheme(
-                        alignedDropdown: true,
-                        child: DropdownButton<String>(
-                          dropdownColor: Colors.teal[400],
-                          value: selectedCitiy,
-                          iconSize: 30,
-                          icon: (null),
-                          //Icon(Icons.place),
-                          //
-                          style: TextStyle(
-                            color: Colors.black54,
-                            fontSize: 16,
-                          ),
-                          hint: Text(
-                            'select City',
-                            style: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 16,
-                            ),
-                          ),
-                          onChanged: (cities) {
-                            setState(() {
-                              selectedCitiy = cities;
-                              // cities();
-                              print('$cities');
-                            });
-                          },
-
-                          isExpanded: false,
-                          items: cities.map((item) {
-                                return new DropdownMenuItem(
-                                  child: Text(
-                                    item,
-                                    style: TextStyle(
-                                        color: Colors.black87,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  value: item,
-                                );
-                              })?.toList() ??
-                              [],
-                        ),
-                      ),
+                /////////////////////////////////
+                Container(
+                  margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                  padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 5.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      25,
+                    ),
+                    border: Border.all(
+                      color: Colors.teal,
+                      width: 1,
                     ),
                   ),
-                ],
-              ),
-            ),
-
-            SizedBox(
-              height: 20.0,
-            ),
-            StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection(kAreaCollectionName)
-                    .snapshots(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (!snapshot.hasData) {
-                    Text("loading .... ");
-                  } else {
-                    List<DropdownMenuItem> areaItems = [];
-                    for (int i = 0; i < snapshot.data.docs.length; i++) {
-                      DocumentSnapshot snap = snapshot.data.docs[i];
-                      areaItems.add(
-                        DropdownMenuItem(
-                          child: Text(
-                            snap[kAreaName],
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          value: "${snap.id.toString()}",
-                          //  areaItems,"${snap.id}",
-                        ),
-                      );
-                    }
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(null),
-                        Container(
-                          margin: EdgeInsets.only(left: 10.0, right: 10.0),
-                          padding: EdgeInsets.only(
-                              left: 15.0, right: 15.0, top: 5.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              25,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                spreadRadius: 2,
-                                blurRadius: 2,
+                  // color: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Expanded(
+                        child: DropdownButtonHideUnderline(
+                          child: ButtonTheme(
+                            alignedDropdown: true,
+                            child: DropdownButton<String>(
+                              dropdownColor: Colors.teal[400],
+                              value: selectedCitiy,
+                              iconSize: 30,
+                              icon: (null),
+                              //Icon(Icons.place),
+                              //
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 16,
                               ),
-                            ],
-                            // border: Border.all(
-                            //   color: Colors.teal,
-                            //   width: 1,
-                            // ),
-                          ),
-                          child: Center(
-                            child: Column(
-                              children: [
-                                DropdownButton(
-                                  dropdownColor: Colors.teal[400],
-                                  items: areaItems,
-                                  // Text(item['title']),
-                                  //areaItems,
-                                  onChanged: (areaValue) {
-                                    setState(() {
-                                      selectedAreas = areaValue;
-
-                                      navigateTo(context, MeatShops());
-                                    });
-                                  },
-                                  value: selectedAreas,
-                                  //selectedAreas,
-                                  isExpanded: false,
-                                  hint: Text("choose your place please!"),
+                              hint: Text(
+                                'select City',
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 16,
                                 ),
-                              ],
+                              ),
+                              onChanged: (cities) {
+                                setState(() {
+                                  selectedCitiy = cities;
+                                  // cities();
+                                  print('$cities');
+                                });
+                              },
+
+                              isExpanded: false,
+                              items: cities.map((item) {
+                                    return new DropdownMenuItem(
+                                      child: Text(
+                                        item,
+                                        style: TextStyle(
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      value: item,
+                                    );
+                                  })?.toList() ??
+                                  [],
                             ),
                           ),
                         ),
-                      ],
-                    );
-                  }
-                  return Container();
-                }),
+                      ),
+                    ],
+                  ),
+                ),
+
+                SizedBox(
+                  height: 20.0,
+                ),
+                StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection(kAreaCollectionName)
+                        .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (!snapshot.hasData) {
+                        Text("loading .... ");
+                      } else {
+                        List<DropdownMenuItem> areaItems = [];
+                        for (int i = 0; i < snapshot.data.docs.length; i++) {
+                          DocumentSnapshot snap = snapshot.data.docs[i];
+                          areaItems.add(
+                            DropdownMenuItem(
+                              child: Text(
+                                snap[kAreaName],
+                                style: TextStyle(
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              value: "${snap.id.toString()}",
+                              //  areaItems,"${snap.id}",
+                            ),
+                          );
+                        }
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(null),
+                            Container(
+                              margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                              padding: EdgeInsets.only(
+                                  left: 15.0, right: 15.0, top: 5.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  25,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    spreadRadius: 2,
+                                    blurRadius: 2,
+                                  ),
+                                ],
+                                // border: Border.all(
+                                //   color: Colors.teal,
+                                //   width: 1,
+                                // ),
+                              ),
+                              child: Center(
+                                child: Column(
+                                  children: [
+                                    DropdownButton(
+                                      dropdownColor: Colors.teal[400],
+                                      items: areaItems,
+                                      // Text(item['title']),
+                                      //areaItems,
+                                      onChanged: (areaValue) {
+                                        setState(() {
+                                          selectedAreas = areaValue;
+
+                                          navigateTo(context, MeatShops());
+                                        });
+                                      },
+                                      value: selectedAreas,
+                                      //selectedAreas,
+                                      isExpanded: false,
+                                      hint: Text("choose your place please!"),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      }
+                      return Container();
+                    }),
+              ],
+            ),
           ],
         ),
       );
