@@ -120,3 +120,16 @@ showLoading(context) {
         );
       });
 }
+
+// AlertDialog(
+// title: Text('kg'),
+// content: Text('how many gram you want!'),
+// actions: [
+// MaterialButton(
+// onPressed: () {
+// Navigator.of(context).pop(context);
+// },
+// child: Text('close'),
+// ),
+// ],
+// );

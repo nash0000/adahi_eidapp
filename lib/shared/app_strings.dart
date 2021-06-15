@@ -27,6 +27,7 @@ const String kMeatType = 'meatType';
 const String kMeatID = 'meatID';
 const String kMeatPrice = 'meatPrice';
 const String kMeatService = 'meatService';
+const String kMeatWeight = 'meatWeight';
 const String kMeatDescription = 'meatDescription';
 
 const String kOrderCollectionName = 'orders';

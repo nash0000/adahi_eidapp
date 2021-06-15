@@ -124,17 +124,18 @@ class _StartPageState extends State<StartPage> {
           ),
         ]),
       ),
-      /////
+      /////End the Drawer/////////
       body: Stack(
         children: [
           Container(
             decoration: BoxDecoration(
-              color: const Color(0xff7c94b6),
+              //color: const Color(0xff7c94b6),
               image: DecorationImage(
                 image: AssetImage('assets/images/sheep3.jpg'),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                    Colors.white.withOpacity(0.5), BlendMode.dstATop),
+                    Colors.white.withOpacity(0.6), BlendMode.lighten),
+
                 // BlendMode.dstATop,),
               ),
             ),
@@ -148,7 +149,11 @@ class _StartPageState extends State<StartPage> {
                     bottom: 100.0, top: 100.0, left: 10.0, right: 10.0),
                 child: Text(
                   "choose  your place",
-                  style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20.0),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                    color: Colors.teal,
+                  ),
                 ),
               ),
               /////////////////////////////////
@@ -180,13 +185,13 @@ class _StartPageState extends State<StartPage> {
                             //Icon(Icons.place),
                             //
                             style: TextStyle(
-                              color: Colors.black54,
+                              color: Colors.white,
                               fontSize: 16,
                             ),
                             hint: Text(
                               'select City',
                               style: TextStyle(
-                                color: Colors.black54,
+                                color: Colors.white,
                                 fontSize: 16,
                               ),
                             ),
@@ -204,7 +209,7 @@ class _StartPageState extends State<StartPage> {
                                     child: Text(
                                       item,
                                       style: TextStyle(
-                                          color: Colors.black87,
+                                          color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     value: item,
@@ -239,7 +244,7 @@ class _StartPageState extends State<StartPage> {
                             child: Text(
                               snap[kAreaName],
                               style: TextStyle(
-                                  color: Colors.black87,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
                             value: "${snap.id.toString()}",
@@ -289,7 +294,10 @@ class _StartPageState extends State<StartPage> {
                                     value: selectedAreas,
                                     //selectedAreas,
                                     isExpanded: false,
-                                    hint: Text("choose your place please!"),
+                                    hint: Text("choose your place please!",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        )),
                                   ),
                                 ],
                               ),

@@ -1,3 +1,4 @@
+import 'package:adahi_eidapp/shared/app_strings.dart';
 import 'package:adahi_eidapp/shared/app_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -176,5 +177,140 @@ class Category extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class CartMeat extends StatefulWidget {
+  const CartMeat({Key key}) : super(key: key);
+
+  @override
+  _CartMeatState createState() => _CartMeatState();
+}
+
+class _CartMeatState extends State<CartMeat> {
+  var meats_on_the_cart = [
+    {
+      kMeatType: 'Balady Lamb',
+      kMeatService: "small Pieces",
+      kMeatWeight: 1,
+      kMeatPrice: '18.0'
+    },
+    {
+      kMeatType: 'Newzealand Lamb',
+      kMeatService: "big Pieces",
+      kMeatWeight: 1,
+      kMeatPrice: '9.5'
+    },
+    {
+      kMeatType: 'Roman Lamb',
+      kMeatService: "finely Chopped",
+      kMeatWeight: 2,
+      kMeatPrice: 16.0,
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: meats_on_the_cart.length,
+      itemBuilder: (context, index) {
+        return SingleMeatCart(
+          cartkMeatType: meats_on_the_cart[index][kMeatType],
+          cartkMeatService: meats_on_the_cart[index][kMeatService],
+          cartkMeatWeight: meats_on_the_cart[index][kMeatWeight],
+          cartkMeatPrice: meats_on_the_cart[index][kMeatPrice],
+        );
+      },
+    );
+  }
+}
+
+class SingleMeatCart extends StatelessWidget {
+  final cartkMeatType;
+  final cartkMeatService;
+  final cartkMeatWeight;
+  final cartkMeatPrice;
+  SingleMeatCart(
+      {this.cartkMeatType,
+      this.cartkMeatService,
+      this.cartkMeatWeight,
+      this.cartkMeatPrice});
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: Text(cartkMeatType,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 17.0,
+                fontWeight: FontWeight.bold)),
+        subtitle: Column(
+          children: <Widget>[
+            Row(
+              children: [
+                //======= this section for service =========
+                Padding(
+                  padding: EdgeInsets.all(2.0),
+                  child: Text(
+                    'service : ',
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    cartkMeatService,
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+                // =======this section for MeatWeight =========
+                // Padding(
+                //     padding: EdgeInsets.fromLTRB(20.0, 8.0, 8.0, 8.0),
+                //     child: Text('Weight : ')),
+                // Padding(
+                //   padding: EdgeInsets.all(4.0),
+                //   child: Text(
+                //    // cartkMeatWeight.toString(),
+                //     style: TextStyle(color: Colors.red),
+                //   ),
+                // ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      IconButton(
+                          icon: Icon(Icons.arrow_drop_up), onPressed: () {}),
+                      Text(cartkMeatWeight.toString() + 'kg'),
+                      IconButton(
+                          icon: Icon(Icons.arrow_drop_down), onPressed: () {}),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            // =======this section for Meat price =========
+            Container(
+              alignment: Alignment.topLeft,
+              child: Text(
+                '\$${cartkMeatPrice}',
+                style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
+        // trailing: Column(
+        //   children: [
+        //     IconButton(icon: Icon(Icons.arrow_drop_up), onPressed: () {}),
+        //     Text(cartkMeatWeight.toString()),
+        //     IconButton(icon: Icon(Icons.arrow_drop_down), onPressed: () {}),
+        //   ],
+        // ),
+      ),
+    );
+  }
+
+  void addWeight() {
+    // cartkMeatWeight = cartkMeatWeight + 1;
   }
 }

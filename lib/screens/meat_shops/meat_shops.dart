@@ -1,4 +1,5 @@
-import 'package:adahi_eidapp/screens/order_screen/order_screen.dart';
+import 'package:adahi_eidapp/screens/order_detail_screen/order_detail_screen.dart';
+//import 'package:adahi_eidapp/screens/order_screen/order_screen.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:adahi_eidapp/shared/app_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,6 +7,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class MeatShops extends StatefulWidget {
+  // final meatType;
+  // final meatServices;
+  // final meatPrice;
+  // final meatDescription;
+  // final butcherShopName;
+  // final butcherArea;
+  // final img;
+  // MeatShops(
+  //     {this.meatType,
+  //     this.meatServices,
+  //     this.butcherShopName,
+  //     this.butcherArea,
+  //     this.meatPrice,
+  //     this.meatDescription,
+  //     this.img});
+
   @override
   State<StatefulWidget> createState() => _MeatShops();
 }
@@ -52,7 +69,8 @@ class _MeatShops extends State<MeatShops> {
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
-                  navigateTo(context, OrderScreen());
+                  navigateTo(context, OrderDetail());
+                  //navigateTo(context, OrderScreen());
                   //navigateTo(context, RegisterScreen());
                 },
                 child: Padding(
@@ -79,9 +97,9 @@ class _MeatShops extends State<MeatShops> {
                           CircleAvatar(
                             child: Image.network(
                               "${butchers[index]['img']}",
-                              fit: BoxFit.fill,
+                              fit: BoxFit.cover,
                             ),
-                            radius: 25.0,
+                            radius: 35.0,
                           ),
                           SizedBox(
                             width: 15.0,
@@ -109,7 +127,7 @@ class _MeatShops extends State<MeatShops> {
                                       direction: Axis.horizontal,
                                       allowHalfRating: true,
                                       itemCount: 5,
-                                      itemSize: 10.0,
+                                      itemSize: 15.0,
                                       ignoreGestures: true,
                                       itemPadding:
                                           EdgeInsets.symmetric(horizontal: 0.0),
@@ -128,6 +146,16 @@ class _MeatShops extends State<MeatShops> {
                                 ),
                                 Text(
                                   "${butchers[index][kButcherPhone]}",
+                                  // 'become a web design that looks grate on all devices ',
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey),
+                                ),
+                                Text(
+                                  "${butchers[index][kButcherShopAddress].toString()}",
+                                  //  "${butchers[index][kButcherArea].toString()}",
                                   // 'become a web design that looks grate on all devices ',
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,

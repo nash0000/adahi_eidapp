@@ -21,7 +21,7 @@ class _OrderScreenState extends State<OrderScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Order Page'),
+          title: Text(' your Order '),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
