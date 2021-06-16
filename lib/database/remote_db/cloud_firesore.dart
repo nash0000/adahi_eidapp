@@ -25,6 +25,22 @@ class CloudService {
         kUserPhone: userModel.userPhone,
       });
 
+  static Future<void> saveButcherInfo(
+          {@required ButcherModel butcherModel}) async =>
+      await _fireStoreInstance
+          .collection(kButcherCollectionName)
+          .doc(butcherModel.butcherID)
+          .set({
+        kButcherID: butcherModel.butcherID,
+        kButcherShopName: butcherModel.butcherShopName,
+        kButcherEmail: butcherModel.butcherEmail,
+        kButcherPassword: butcherModel.butcherPassword,
+        kButcherShopAddress: butcherModel.butcherAddress,
+        kButcherPhone: butcherModel.butcherPhone,
+        kButcherArea: butcherModel.butcherArea,
+        kButcherImg: butcherModel.img,
+      });
+
   static Future<void> addMeat({@required MeatModel meatModel}) async {
     await _fireStoreInstance
         .collection(kMeatCollectionName)
@@ -41,20 +57,4 @@ class CloudService {
   Stream<QuerySnapshot> loadMeats() {
     return _fireStoreInstance.collection(kMeatCollectionName).snapshots();
   }
-
-  static Future<void> saveButcherInfo(
-          {@required ButcherModel butcherModel}) async =>
-      await _fireStoreInstance
-          .collection(kButcherCollectionName)
-          .doc(butcherModel.butcherID)
-          .set({
-        kButcherID: butcherModel.butcherID,
-        kButcherShopName: butcherModel.butcherShopName,
-        kButcherEmail: butcherModel.butcherEmail,
-        kButcherPassword: butcherModel.butcherPassword,
-        kButcherShopAddress: butcherModel.butcherAddress,
-        kButcherPhone: butcherModel.butcherPhone,
-        kButcherArea: butcherModel.butcherArea,
-        kButcherImg: butcherModel.img,
-      });
 }

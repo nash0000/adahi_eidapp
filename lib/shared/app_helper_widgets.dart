@@ -51,20 +51,25 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType keyboardType;
   final String title;
   final IconData prefixIcon;
+  // final IconData suffixIcon;
   final bool obscureText;
   final TextEditingController controller;
   final Function onChange;
+  // final bool hidePass;
   const CustomTextFormField({
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
+    // this.hidePass = true,
     @required this.controller,
     this.onChange,
     @required this.title,
     @required this.prefixIcon,
+    // @required this.suffixIcon,
   });
 
   @override
   Widget build(BuildContext context) {
+    bool hidePass = true;
     return TextFormField(
       cursorColor: Theme.of(context).primaryColor,
       keyboardType: keyboardType,
@@ -311,6 +316,6 @@ class SingleMeatCart extends StatelessWidget {
   }
 
   void addWeight() {
-    // cartkMeatWeight = cartkMeatWeight + 1;
+    //cartkMeatWeight = cartkMeatWeight + 1;
   }
 }

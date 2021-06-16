@@ -83,7 +83,7 @@ class SignUpScreen extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: 35.0,
+                          height: 25.0,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20),
@@ -106,11 +106,12 @@ class SignUpScreen extends StatelessWidget {
                                 height: 20.0,
                               ),
                               CustomTextFormField(
-                                  title: 'Password',
-                                  keyboardType: TextInputType.visiblePassword,
-                                  controller: passwordController,
-                                  prefixIcon: Icons.lock,
-                                  obscureText: true),
+                                title: 'Password',
+                                keyboardType: TextInputType.visiblePassword,
+                                controller: passwordController,
+                                prefixIcon: Icons.lock,
+                                obscureText: true,
+                              ),
                               SizedBox(
                                 height: 20.0,
                               ),
@@ -133,7 +134,7 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 35.0,
+                          height: 25.0,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20),
@@ -144,7 +145,7 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 35.0,
+                          height: 25.0,
                         ),
                         TextButton(
                           onPressed: () {

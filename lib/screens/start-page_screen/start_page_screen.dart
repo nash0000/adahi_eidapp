@@ -186,13 +186,14 @@ class _StartPageState extends State<StartPage> {
                             //
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 20,
                             ),
                             hint: Text(
-                              'select City',
+                              'Select City',
                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
+                                color: Colors.teal,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                             onChanged: (cities) {
@@ -210,6 +211,7 @@ class _StartPageState extends State<StartPage> {
                                       item,
                                       style: TextStyle(
                                           color: Colors.white,
+                                          fontSize: 20.0,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     value: item,
@@ -245,6 +247,7 @@ class _StartPageState extends State<StartPage> {
                               snap[kAreaName],
                               style: TextStyle(
                                   color: Colors.white,
+                                  fontSize: 20.0,
                                   fontWeight: FontWeight.bold),
                             ),
                             value: "${snap.id.toString()}",
@@ -294,10 +297,11 @@ class _StartPageState extends State<StartPage> {
                                     value: selectedAreas,
                                     //selectedAreas,
                                     isExpanded: false,
-                                    hint: Text("choose your place please!",
+                                    hint: Text("Choose your area please!",
                                         style: TextStyle(
-                                          color: Colors.white,
-                                        )),
+                                            fontSize: 20.0,
+                                            color: Colors.teal,
+                                            fontWeight: FontWeight.bold)),
                                   ),
                                 ],
                               ),

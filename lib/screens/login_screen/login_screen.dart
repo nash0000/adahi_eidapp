@@ -35,7 +35,7 @@ class LoginScreen extends StatelessWidget {
               Navigator.pop(context);
               navigateAndFinish(
                 context,
-                HomeScreens(),
+                StartPage(),
               );
               showToast(
                 massage: 'created',

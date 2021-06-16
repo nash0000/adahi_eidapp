@@ -65,13 +65,15 @@ class _MeatShops extends State<MeatShops> {
           ),
           Expanded(
             child: ListView.separated(
-              padding: EdgeInsets.only(top: 20.0),
+              padding: EdgeInsets.only(top: 10.0),
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
-                  navigateTo(context, OrderDetail());
+                  navigateTo(
+                    context,
+                    OrderDetail(),
+                  );
                   //navigateTo(context, OrderScreen());
-                  //navigateTo(context, RegisterScreen());
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -97,7 +99,7 @@ class _MeatShops extends State<MeatShops> {
                           CircleAvatar(
                             child: Image.network(
                               "${butchers[index]['img']}",
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                             ),
                             radius: 35.0,
                           ),
@@ -173,7 +175,7 @@ class _MeatShops extends State<MeatShops> {
                 ),
               ),
               separatorBuilder: (context, index) => SizedBox(
-                height: 10.0,
+                height: 20.0,
               ),
               itemCount: butchers.length,
             ),
