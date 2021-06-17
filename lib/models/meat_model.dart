@@ -5,6 +5,7 @@ class MeatModel {
   String meatDescription;
   List meatServices;
   double meatWeight;
+  double meatProfit;
 
   MeatModel(
       {this.meatID,
@@ -12,5 +13,6 @@ class MeatModel {
       this.meatPrice,
       this.meatDescription,
       this.meatServices,
-      this.meatWeight});
+      this.meatWeight,
+      this.meatProfit});
 }

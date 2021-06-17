@@ -1,5 +1,7 @@
 import 'package:adahi_eidapp/models/butcher_model.dart';
 import 'package:adahi_eidapp/models/user_model.dart';
+import 'package:adahi_eidapp/shared/app_strings.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

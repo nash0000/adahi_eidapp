@@ -1,6 +1,6 @@
 import 'package:adahi_eidapp/screens/home_screens/home_cubit/home_cubit.dart';
 import 'package:adahi_eidapp/screens/meat_shops/meat_shops.dart';
-import 'package:adahi_eidapp/screens/order_detail_screen/order_detail_screen.dart';
+
 import 'package:adahi_eidapp/screens/order_screen/order_screen.dart';
 import 'package:adahi_eidapp/screens/sign_up_screen/sign_up_cubit/sign_up_cubit.dart';
 import 'package:adahi_eidapp/screens/sign_up_screen/sign_up_screen.dart';

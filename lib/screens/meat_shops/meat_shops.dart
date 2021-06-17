@@ -1,4 +1,5 @@
-import 'package:adahi_eidapp/screens/order_detail_screen/order_detail_screen.dart';
+import 'package:adahi_eidapp/screens/meat_detail_screen/meat_detail_screen.dart';
+
 //import 'package:adahi_eidapp/screens/order_screen/order_screen.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:adahi_eidapp/shared/app_strings.dart';
@@ -7,22 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class MeatShops extends StatefulWidget {
-  // final meatType;
-  // final meatServices;
-  // final meatPrice;
-  // final meatDescription;
-  // final butcherShopName;
-  // final butcherArea;
-  // final img;
-  // MeatShops(
-  //     {this.meatType,
-  //     this.meatServices,
-  //     this.butcherShopName,
-  //     this.butcherArea,
-  //     this.meatPrice,
-  //     this.meatDescription,
-  //     this.img});
-
   @override
   State<StatefulWidget> createState() => _MeatShops();
 }
@@ -71,7 +56,7 @@ class _MeatShops extends State<MeatShops> {
                 onTap: () {
                   navigateTo(
                     context,
-                    OrderDetail(),
+                    MeatDetail(),
                   );
                   //navigateTo(context, OrderScreen());
                 },

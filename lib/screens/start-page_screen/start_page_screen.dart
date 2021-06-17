@@ -168,6 +168,13 @@ class _StartPageState extends State<StartPage> {
                     color: Colors.teal,
                     width: 1,
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.teal.withOpacity(0.7),
+                      spreadRadius: 2,
+                      blurRadius: 2,
+                    ),
+                  ],
                 ),
                 // color: Colors.white,
                 child: Row(
@@ -191,7 +198,7 @@ class _StartPageState extends State<StartPage> {
                             hint: Text(
                               'Select City',
                               style: TextStyle(
-                                color: Colors.teal,
+                                color: Colors.white,
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -269,7 +276,7 @@ class _StartPageState extends State<StartPage> {
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
+                                  color: Colors.teal.withOpacity(0.7),
                                   spreadRadius: 2,
                                   blurRadius: 2,
                                 ),
@@ -300,7 +307,7 @@ class _StartPageState extends State<StartPage> {
                                     hint: Text("Choose your area please!",
                                         style: TextStyle(
                                             fontSize: 20.0,
-                                            color: Colors.teal,
+                                            color: Colors.white,
                                             fontWeight: FontWeight.bold)),
                                   ),
                                 ],

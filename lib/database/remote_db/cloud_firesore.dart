@@ -51,10 +51,16 @@ class CloudService {
       kMeatPrice: meatModel.meatPrice,
       kMeatDescription: meatModel.meatDescription,
       kMeatService: meatModel.meatServices,
+      kMeatWeight: meatModel.meatWeight,
+      kMeatProfit: meatModel.meatProfit,
     });
   }
 
-  Stream<QuerySnapshot> loadMeats() {
-    return _fireStoreInstance.collection(kMeatCollectionName).snapshots();
+  static Future<QuerySnapshot> getMeats() async {
+    return await _fireStoreInstance.collection(kMeatCollectionName).get();
+  }
+
+  static Future<QuerySnapshot> getButchers() async {
+    return await _fireStoreInstance.collection(kButcherCollectionName).get();
   }
 }
