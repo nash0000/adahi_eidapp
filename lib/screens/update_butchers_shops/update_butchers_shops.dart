@@ -1,4 +1,5 @@
 import 'package:adahi_eidapp/models/butcher_model.dart';
+import 'package:adahi_eidapp/screens/meat_shops/meat_shops.dart';
 import 'package:adahi_eidapp/shared/app_enum.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:adahi_eidapp/shared/app_helper_widgets.dart';
@@ -33,9 +34,9 @@ class UpdateButchersShops extends StatelessWidget {
 
             if (state is UpdateButchersShopSuccessState) {
               Navigator.pop(context);
-              // navigateAndFinish(context, AddMeat());
+              navigateAndFinish(context, MeatShops());
               showToast(
-                massage: 'created',
+                massage: 'Updated',
                 color: ToastColors.SUCCESS,
               );
             }
@@ -167,6 +168,4 @@ class UpdateButchersShops extends StatelessWidget {
           ),
         ),
       );
-
-  /////
 }
