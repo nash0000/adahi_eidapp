@@ -26,8 +26,6 @@ class _StartPageState extends State<StartPage> {
     "Ma'an",
     "Al Aqabah",
   ];
-  var myCity;
-  var myArea;
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +168,7 @@ class _StartPageState extends State<StartPage> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.teal.withOpacity(0.7),
+                      color: Colors.teal,
                       spreadRadius: 2,
                       blurRadius: 2,
                     ),
@@ -257,7 +255,9 @@ class _StartPageState extends State<StartPage> {
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold),
                             ),
+
                             value: "${snap.id.toString()}",
+
                             //  areaItems,"${snap.id}",
                           ),
                         );
@@ -276,7 +276,7 @@ class _StartPageState extends State<StartPage> {
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.teal.withOpacity(0.7),
+                                  color: Colors.teal,
                                   spreadRadius: 2,
                                   blurRadius: 2,
                                 ),
@@ -290,6 +290,7 @@ class _StartPageState extends State<StartPage> {
                               child: Column(
                                 children: [
                                   DropdownButton(
+                                    iconEnabledColor: Colors.white,
                                     dropdownColor: Colors.teal[400],
                                     items: areaItems,
                                     // Text(item['title']),

@@ -1,7 +1,9 @@
+import 'package:adahi_eidapp/screens/add_butchers_shops/add_butchers_shops.dart';
 import 'package:adahi_eidapp/screens/home_screens/home_cubit/home_cubit.dart';
 import 'package:adahi_eidapp/screens/meat_shops/meat_shops.dart';
 
 import 'package:adahi_eidapp/screens/order_screen/order_screen.dart';
+import 'package:adahi_eidapp/screens/search_screen/search_screen.dart';
 import 'package:adahi_eidapp/screens/sign_up_screen/sign_up_cubit/sign_up_cubit.dart';
 import 'package:adahi_eidapp/screens/sign_up_screen/sign_up_screen.dart';
 import 'package:adahi_eidapp/screens/start-page_screen/start_page_screen.dart';
@@ -38,7 +40,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: kDefaultColor,
         ),
-        home: WelcomeScreen(),
+        home: AddButchersShops(),
+        //WelcomeScreen(),
+        //SearchScreen(),
+        //AddButchersShops(),
+        //
         //WelcomeScreen(),
         //OrderDetail(),
         //WelcomeScreen(),

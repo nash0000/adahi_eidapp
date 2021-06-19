@@ -25,22 +25,6 @@ class CloudService {
         kUserPhone: userModel.userPhone,
       });
 
-  static Future<void> saveButcherInfo(
-          {@required ButcherModel butcherModel}) async =>
-      await _fireStoreInstance
-          .collection(kButcherCollectionName)
-          .doc(butcherModel.butcherID)
-          .set({
-        kButcherID: butcherModel.butcherID,
-        kButcherShopName: butcherModel.butcherShopName,
-        kButcherEmail: butcherModel.butcherEmail,
-        kButcherPassword: butcherModel.butcherPassword,
-        kButcherShopAddress: butcherModel.butcherAddress,
-        kButcherPhone: butcherModel.butcherPhone,
-        kButcherArea: butcherModel.butcherArea,
-        kButcherImg: butcherModel.img,
-      });
-
   static Future<void> addMeat({@required MeatModel meatModel}) async {
     await _fireStoreInstance
         .collection(kMeatCollectionName)
@@ -60,7 +44,47 @@ class CloudService {
     return await _fireStoreInstance.collection(kMeatCollectionName).get();
   }
 
-  static Future<QuerySnapshot> getButchers() async {
+  static Future<QuerySnapshot> getButcher() async {
     return await _fireStoreInstance.collection(kButcherCollectionName).get();
+  }
+
+  static Future<DocumentReference> createCollectionAndAddButcher(
+      {ButcherModel butcher}) async {
+    return await _fireStoreInstance.collection(kButcherCollectionName).add({
+      kButcherID: butcher.butcherID,
+      kButcherEmail: butcher.butcherEmail,
+      kButcherPassword: butcher.butcherPassword,
+      kButcherPhone: butcher.butcherPhone,
+      kButcherArea: butcher.butcherArea,
+      kButcherShopAddress: butcher.butcherAddress,
+      kButcherImg: butcher.img,
+    });
+  }
+
+  static Future<QuerySnapshot> getButchers() async {
+    print('=============================================');
+    print('getButchers Triggered');
+    print('=============================================');
+    return await _fireStoreInstance.collection(kButcherCollectionName).get();
+  }
+
+  static Future<void> saveButcherInfo(
+      {@required ButcherModel butcherModel}) async {
+    DocumentReference ref =
+        _fireStoreInstance.collection(kButcherCollectionName).doc();
+
+    await _fireStoreInstance
+        .collection(kButcherCollectionName)
+        .doc(ref.id)
+        .set({
+      kButcherID: ref.id,
+      kButcherShopName: butcherModel.butcherShopName,
+      kButcherEmail: butcherModel.butcherEmail,
+      kButcherPassword: butcherModel.butcherPassword,
+      kButcherShopAddress: butcherModel.butcherAddress,
+      kButcherPhone: butcherModel.butcherPhone,
+      kButcherArea: butcherModel.butcherArea,
+      kButcherImg: butcherModel.img,
+    });
   }
 }

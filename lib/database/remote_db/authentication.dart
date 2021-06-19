@@ -24,4 +24,7 @@ class AuthenticationService {
   }) async =>
       await _auth.signInWithEmailAndPassword(
           email: userModel.userEmail, password: userModel.userPassword);
+
+  //static Future<UserCredential> signOut(){}
+
 }

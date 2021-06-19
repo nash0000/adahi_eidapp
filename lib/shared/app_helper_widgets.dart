@@ -235,11 +235,13 @@ class SingleMeatCart extends StatelessWidget {
   final cartkMeatService;
   final cartkMeatWeight;
   final cartkMeatPrice;
+
   SingleMeatCart(
       {this.cartkMeatType,
       this.cartkMeatService,
       this.cartkMeatWeight,
       this.cartkMeatPrice});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -313,9 +315,5 @@ class SingleMeatCart extends StatelessWidget {
         // ),
       ),
     );
-  }
-
-  void addWeight() {
-    //cartkMeatWeight = cartkMeatWeight + 1;
   }
 }
