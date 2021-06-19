@@ -293,12 +293,9 @@ class _StartPageState extends State<StartPage> {
                                     iconEnabledColor: Colors.white,
                                     dropdownColor: Colors.teal[400],
                                     items: areaItems,
-                                    // Text(item['title']),
-                                    //areaItems,
                                     onChanged: (areaValue) {
                                       setState(() {
                                         selectedAreas = areaValue;
-
                                         // navigateTo(context, UserMeatShops());
                                       });
                                     },
