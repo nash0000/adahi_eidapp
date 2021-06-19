@@ -1,4 +1,6 @@
+import 'package:adahi_eidapp/database/remote_db/cloud_firesore.dart';
 import 'package:adahi_eidapp/models/butcher_model.dart';
+import 'package:adahi_eidapp/screens/add_butchers_shops/add_butchers_shops.dart';
 import 'package:adahi_eidapp/screens/meat_detail_screen/meat_detail_screen.dart';
 import 'package:adahi_eidapp/screens/meat_shops/meat_cubit/meat_shops-states.dart';
 import 'package:adahi_eidapp/screens/meat_shops/meat_cubit/meat_shops_cubit.dart';
@@ -7,33 +9,11 @@ import 'package:adahi_eidapp/screens/meat_shops/meat_cubit/meat_shops_cubit.dart
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:adahi_eidapp/shared/app_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-// class MeatShops extends StatefulWidget {
-//   List<ButcherModel> butchers = MeatShopsCubit.get(context).loadOneButcher();
-//   @override
-//   State<StatefulWidget> createState() => _MeatShops();
-// }
 class MeatShops extends StatelessWidget {
-  List<ButcherModel> butchers = [];
-  List<ButcherModel> oneButcher = [];
-
-// class _MeatShops extends State<MeatShops> {
-  // List<ButcherModel> butchers = [];
-  // List<MeatShopsCubit> oneButcher = [];
-  bool isLoading = true;
-  // List butchers = [];
-  //  bool isLoading = true;
-  //  CollectionReference butcherRef =
-  //      FirebaseFirestore.instance.collection(kButcherCollectionName);
-  //
-  //  Future<List<QueryDocumentSnapshot>> getData() async {
-  //    var responsebody = await butcherRef.get();
-  //    return responsebody.docs;
-  // }
-
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (context) => MeatShopsCubit()..loadAllMeatShopsForUser(),
@@ -44,25 +24,30 @@ class MeatShops extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 title: Text(' Meat Shops '),
+                // actions: [
+                //   IconButton(
+                //       icon: Icon(Icons.add),
+                //       onPressed: () {
+                //         navigateTo(context, AddButchersShops());
+                //       }),
+                //   SizedBox(
+                //     width: 20.0,
+                //   )
+                // ],
                 backgroundColor: Colors.teal,
               ),
-              body: Column(
-                children: [
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Expanded(
-                    child: ListView.separated(
-                      // itemCount: butchers.length,
-                      padding: EdgeInsets.only(top: 10.0),
-                      physics: BouncingScrollPhysics(),
-
-                      itemBuilder: (context, index) {
-                        print('=============================================');
-                        print('butchers ${butchers[index].butcherPhone}');
-                        print('=============================================');
-
-                        return GestureDetector(
+              body: ConditionalBuilder(
+                condition: state is! MeatShopsLoadingState,
+                builder: (context) => Column(
+                  children: [
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    Expanded(
+                      child: ListView.separated(
+                        padding: EdgeInsets.only(top: 10.0),
+                        physics: BouncingScrollPhysics(),
+                        itemBuilder: (context, index) => GestureDetector(
                           onTap: () {
                             navigateTo(
                               context,
@@ -109,51 +94,16 @@ class MeatShops extends StatelessWidget {
                                           Row(
                                             children: [
                                               Expanded(
-                                                child: isLoading == true
-                                                    ? Text("loading")
-                                                    : Text(
-                                                        // itemButcherShopName,
-                                                        // 'hi hi hi ',
-                                                        // itemButcherShopName,
-                                                        // "${[
-                                                        //   'butcherShopName'
-                                                        // ]}",
-                                                        '${butchers[index].butcherShopName}',
-                                                        //  itemButcherShopName,
-                                                        // butchers[index]
-                                                        //     .butcherShopName,
-                                                        //"${butchers[index]['butcherShopName'] ?? 'nash'}",
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                              ),
-                                              ////============== start RatingBar ============
-                                              RatingBar.builder(
-                                                initialRating: 3,
-                                                minRating: 1,
-                                                direction: Axis.horizontal,
-                                                allowHalfRating: true,
-                                                itemCount: 5,
-                                                itemSize: 15.0,
-                                                ignoreGestures: true,
-                                                itemPadding:
-                                                    EdgeInsets.symmetric(
-                                                        horizontal: 0.0),
-                                                itemBuilder: (context, _) =>
-                                                    Icon(
-                                                  Icons.star,
-                                                  color: Colors.amber,
+                                                child: Text(
+                                                  '${butchers[index].butcherShopName}',
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                 ),
-                                                onRatingUpdate: (rating) {
-                                                  print(rating);
-                                                },
                                               ),
-                                              ////============== End RatingBar ============
                                             ],
                                           ),
                                           SizedBox(
@@ -161,11 +111,6 @@ class MeatShops extends StatelessWidget {
                                           ),
                                           Text(
                                             butchers[index].butcherPhone,
-                                            // '${butchers[index].butcherPhone}',
-                                            // itemButcherPhone,
-                                            //  "${['kButcherPhone']}",
-                                            //"${butchers[index][kButcherPhone]}",
-                                            //  '      itemButcherPhone',
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
@@ -174,16 +119,6 @@ class MeatShops extends StatelessWidget {
                                           ),
                                           Text(
                                             '${butchers[index].butcherPhone}',
-                                            //itemButcherArea,
-                                            // "hello",
-                                            //'  itemButcherArea.toString(),
-                                            // "${[
-                                            //   'kButcherShopArea'
-                                            // ].toString()}",
-                                            //  "${butchers[index][kButcherArea]}",
-                                            //  "${butchers[index][kButcherArea].toString()}",
-                                            // butchers[index].butcherArea,
-
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
@@ -192,6 +127,28 @@ class MeatShops extends StatelessWidget {
                                           ),
                                         ],
                                       ),
+                                    ),
+                                    Column(
+                                      children: [
+                                        IconButton(
+                                            icon: Icon(Icons.edit),
+                                            onPressed: () {
+                                              // navigateTo(context, widet)
+                                            }),
+                                        SizedBox(
+                                          height: 20.0,
+                                        ),
+                                        IconButton(
+                                            icon: Icon(Icons.delete),
+                                            onPressed: () {
+                                              MeatShopsCubit.get(context)
+                                                  .deleteMeatShop(
+                                                      index: index,
+                                                      butcherShopID:
+                                                          butchers[index]
+                                                              .butcherID);
+                                            }),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -202,15 +159,18 @@ class MeatShops extends StatelessWidget {
                           //   separatorBuilder: (context, index) => SizedBox(
                           // height: 20.0,
                           // ),
-                        );
-                      },
-                      itemCount: butchers.length,
-                      separatorBuilder: (context, index) => SizedBox(
-                        height: 20.0,
+                        ),
+                        itemCount: butchers.length,
+                        separatorBuilder: (context, index) => SizedBox(
+                          height: 20.0,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+                fallback: (context) => Center(
+                  child: CircularProgressIndicator(),
+                ),
               ),
             );
           },

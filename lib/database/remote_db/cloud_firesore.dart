@@ -87,4 +87,18 @@ class CloudService {
       kButcherImg: butcherModel.img,
     });
   }
+
+  static Future<void> updateButcherInfo({productData, documentId}) async {
+    return await _fireStoreInstance
+        .collection(kButcherCollectionName)
+        .doc(documentId)
+        .update(productData);
+  }
+
+  static Future<void> deleteButcherInfo({butcherShopID}) async {
+    return await _fireStoreInstance
+        .collection(kButcherCollectionName)
+        .doc(butcherShopID)
+        .delete();
+  }
 }
