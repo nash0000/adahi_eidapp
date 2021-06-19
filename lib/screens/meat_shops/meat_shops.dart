@@ -40,6 +40,7 @@ class MeatShops extends StatelessWidget {
         child: BlocConsumer<MeatShopsCubit, MeatShopsStates>(
           listener: (context, state) {},
           builder: (context, state) {
+            List<ButcherModel> butchers = MeatShopsCubit.get(context).butchers;
             return Scaffold(
               appBar: AppBar(
                 title: Text(' Meat Shops '),
@@ -57,26 +58,10 @@ class MeatShops extends StatelessWidget {
                       physics: BouncingScrollPhysics(),
 
                       itemBuilder: (context, index) {
-                        MeatShopsCubit.get(context)
-                            .loadOneButcher(searchButcher: kButcherShopName);
-
-                        List<ButcherModel> butchers =
-                            MeatShopsCubit.get(context).butchers;
-
-                        String itemButcherShopName =
-                            butchers[index].butcherShopName;
-                        String itemButcherPhone = butchers[index].butcherPhone;
-                        String itemButcherID = butchers[index].butcherID;
-                        String itemButcherArea = butchers[index].butcherArea;
-                        String itemButcherAddress =
-                            butchers[index].butcherAddress;
-
-                        String itemButcherImg = butchers[index].img;
                         print('=============================================');
-                        print('itemButcherShopName $itemButcherShopName');
-                        print('itemButcherPhone $itemButcherPhone');
-                        print('itemButcherID $itemButcherID');
+                        print('butchers ${butchers[index].butcherPhone}');
                         print('=============================================');
+
                         return GestureDetector(
                           onTap: () {
                             navigateTo(
@@ -107,14 +92,10 @@ class MeatShops extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     CircleAvatar(
-                                      child: Image.network(
-                                        '${butchers[index].img}',
-
-                                        // itemButcherImg,
-                                        //  "${[kButcherImg]}",
-                                        // "${butchers[index]['itemButcherImg']}",
-                                        fit: BoxFit.fill,
-                                      ),
+                                      backgroundColor: Colors.amberAccent,
+                                      // child: Image.network(
+                                      //   '${butchers[index].img}',
+                                      // ),
                                       radius: 35.0,
                                     ),
                                     SizedBox(
@@ -179,7 +160,7 @@ class MeatShops extends StatelessWidget {
                                             height: 5.0,
                                           ),
                                           Text(
-                                            itemButcherPhone,
+                                            butchers[index].butcherPhone,
                                             // '${butchers[index].butcherPhone}',
                                             // itemButcherPhone,
                                             //  "${['kButcherPhone']}",

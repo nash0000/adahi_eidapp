@@ -40,7 +40,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: kDefaultColor,
         ),
-        home: AddButchersShops(),
+        home: WelcomeScreen(),
+        // home: AddButchersShops(),
         //WelcomeScreen(),
         //SearchScreen(),
         //AddButchersShops(),

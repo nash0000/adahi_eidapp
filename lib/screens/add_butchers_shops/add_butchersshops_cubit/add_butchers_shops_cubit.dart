@@ -11,38 +11,6 @@ class AddButchersShopCubit extends Cubit<AddButchersShopStates> {
 
   static AddButchersShopCubit get(context) => BlocProvider.of(context);
 
-  List<ButcherModel> butchers = [];
-
-  loadAllMeatShopsForUser() {
-    CloudService.getButchers()
-        .then((value) {
-          for (var doc in value.docs) {
-            var data = doc.data();
-
-            print('=============================================');
-            butchers.add(ButcherModel(
-                butcherID: doc.id,
-                butcherEmail: data[kButcherEmail],
-                butcherPhone: data[kButcherPhone],
-                butcherArea: data[kButcherArea],
-                butcherAddress: data[kButcherShopAddress],
-                butcherShopName: data[kButcherShopName],
-                butcherPassword: data[kButcherPassword],
-                img: data[kButcherImg]));
-          }
-          print('=============================================');
-          print('butchers ${butchers.length}');
-          print('=============================================');
-        })
-        .then((value) => emit(AddButchersShopSuccessState()))
-        .catchError(
-          (error) => emit(AddButchersShopErrorState(error.toString())),
-        )
-        .catchError(
-          (error) => emit(AddButchersShopErrorState(error.toString())),
-        );
-  }
-
   saveButcherInfo({@required ButcherModel butcherModel}) {
     emit(AddButchersShopLoadingState());
 
@@ -60,5 +28,3 @@ class AddButchersShopCubit extends Cubit<AddButchersShopStates> {
         );
   }
 }
-
-////////////////
