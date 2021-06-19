@@ -43,3 +43,6 @@ const String kAvailableMeatIDd = 'availableMeatID';
 const String kAvailableMeatButcherID = 'butcherID';
 const String kAvailableMeatTotalPrice = 'meatPrice';
 const String kAvailableMeat = 'meatID';
+
+const kIamAdmin = 'i\'m an admin';
+const kIamUser = 'i\'m an user';

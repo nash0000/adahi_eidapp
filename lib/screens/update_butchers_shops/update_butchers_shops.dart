@@ -34,7 +34,7 @@ class UpdateButchersShops extends StatelessWidget {
 
             if (state is UpdateButchersShopSuccessState) {
               Navigator.pop(context);
-              navigateAndFinish(context, MeatShops());
+              navigateAndFinish(context, AdminMeatShops());
               showToast(
                 massage: 'Updated',
                 color: ToastColors.SUCCESS,

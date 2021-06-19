@@ -9,13 +9,31 @@ class LoginCubit extends Cubit<LoginStates> {
 
   static LoginCubit get(context) => BlocProvider.of(context);
 
-  authenticationAndSaveUserInfo({@required UserModel userModel}) {
+  String currentMode = 'user';
+  String adminMode = 'admin';
+  String userMode = 'user';
+
+  changeToAdminMode() {
+    currentMode = adminMode;
+    emit(LoginAdminState());
+  }
+
+  changeToUserMode() {
+    currentMode = userMode;
+    emit(LoginUserState());
+  }
+
+  signInAsAdmin(mode) {
+    emit(LoginSuccessState(mode));
+  }
+
+  authenticationAndSaveUserInfo({@required UserModel userModel, mode}) {
     emit(LoginLoadingState());
 
-    AuthenticationService.signIn(userModel: userModel)
-        .then((userCredential) {})
-        .catchError(
-          (error) => emit(LoginErrorState(error.toString())),
-        );
+    AuthenticationService.signIn(userModel: userModel).then((userCredential) {
+      emit(LoginSuccessState(mode));
+    }).catchError(
+      (error) => emit(LoginErrorState(error.toString())),
+    );
   }
 }

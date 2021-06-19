@@ -5,16 +5,12 @@ import 'package:adahi_eidapp/screens/meat_detail_screen/meat_detail_screen.dart'
 import 'package:adahi_eidapp/screens/meat_shops/meat_cubit/meat_shops-states.dart';
 import 'package:adahi_eidapp/screens/meat_shops/meat_cubit/meat_shops_cubit.dart';
 import 'package:adahi_eidapp/screens/update_butchers_shops/update_butchers_shops.dart';
-
-//import 'package:adahi_eidapp/screens/order_screen/order_screen.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
-import 'package:adahi_eidapp/shared/app_strings.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MeatShops extends StatelessWidget {
+class AdminMeatShops extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (context) => MeatShopsCubit()..loadAllMeatShopsForUser(),
@@ -24,17 +20,17 @@ class MeatShops extends StatelessWidget {
             List<ButcherModel> butchers = MeatShopsCubit.get(context).butchers;
             return Scaffold(
               appBar: AppBar(
-                title: Text(' Meat Shops '),
-                // actions: [
-                //   IconButton(
-                //       icon: Icon(Icons.add),
-                //       onPressed: () {
-                //         navigateTo(context, AddButchersShops());
-                //       }),
-                //   SizedBox(
-                //     width: 20.0,
-                //   )
-                // ],
+                title: Text('Admin Meat Shops'),
+                actions: [
+                  IconButton(
+                      icon: Icon(Icons.add),
+                      onPressed: () {
+                        navigateTo(context, AddButchersShops());
+                      }),
+                  SizedBox(
+                    width: 20.0,
+                  )
+                ],
                 backgroundColor: Colors.teal,
               ),
               body: ConditionalBuilder(
@@ -54,7 +50,6 @@ class MeatShops extends StatelessWidget {
                               context,
                               MeatDetail(),
                             );
-                            //navigateTo(context, OrderScreen());
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -162,10 +157,6 @@ class MeatShops extends StatelessWidget {
                               ),
                             ),
                           ),
-
-                          //   separatorBuilder: (context, index) => SizedBox(
-                          // height: 20.0,
-                          // ),
                         ),
                         itemCount: butchers.length,
                         separatorBuilder: (context, index) => SizedBox(

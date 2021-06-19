@@ -210,7 +210,7 @@ class _MainPageState extends State<MainPage> {
                                         setState(() {
                                           selectedAreas = areaValue;
 
-                                          navigateTo(context, MeatShops());
+                                          navigateTo(context, AdminMeatShops());
                                         });
                                       },
                                       value: selectedAreas,

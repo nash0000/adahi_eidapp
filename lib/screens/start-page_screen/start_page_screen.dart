@@ -299,7 +299,7 @@ class _StartPageState extends State<StartPage> {
                                       setState(() {
                                         selectedAreas = areaValue;
 
-                                        navigateTo(context, MeatShops());
+                                        // navigateTo(context, UserMeatShops());
                                       });
                                     },
                                     value: selectedAreas,
