@@ -88,11 +88,12 @@ class CloudService {
     });
   }
 
-  static Future<void> updateButcherInfo({productData, documentId}) async {
+  static Future<void> updateButcherInfo(
+      {butcherDataAsMap, butcherShopID}) async {
     return await _fireStoreInstance
         .collection(kButcherCollectionName)
-        .doc(documentId)
-        .update(productData);
+        .doc(butcherShopID)
+        .update(butcherDataAsMap);
   }
 
   static Future<void> deleteButcherInfo({butcherShopID}) async {

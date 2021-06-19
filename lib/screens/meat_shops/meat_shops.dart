@@ -4,6 +4,7 @@ import 'package:adahi_eidapp/screens/add_butchers_shops/add_butchers_shops.dart'
 import 'package:adahi_eidapp/screens/meat_detail_screen/meat_detail_screen.dart';
 import 'package:adahi_eidapp/screens/meat_shops/meat_cubit/meat_shops-states.dart';
 import 'package:adahi_eidapp/screens/meat_shops/meat_cubit/meat_shops_cubit.dart';
+import 'package:adahi_eidapp/screens/update_butchers_shops/update_butchers_shops.dart';
 
 //import 'package:adahi_eidapp/screens/order_screen/order_screen.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
@@ -133,7 +134,13 @@ class MeatShops extends StatelessWidget {
                                         IconButton(
                                             icon: Icon(Icons.edit),
                                             onPressed: () {
-                                              // navigateTo(context, widet)
+                                              navigateTo(
+                                                  context,
+                                                  UpdateButchersShops(
+                                                    butcherSHopID:
+                                                        butchers[index]
+                                                            .butcherID,
+                                                  ));
                                             }),
                                         SizedBox(
                                           height: 20.0,
