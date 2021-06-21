@@ -1,9 +1,10 @@
 import 'package:adahi_eidapp/models/user_model.dart';
 import 'package:adahi_eidapp/screens/add_butchers_shops/add_butchers_shops.dart';
+import 'package:adahi_eidapp/screens/admin_meat_shops/admin_meat_shops.dart';
 import 'package:adahi_eidapp/screens/home_screens/home_screens.dart';
 import 'package:adahi_eidapp/screens/login_screen/login_cubit/login_cubit.dart';
 import 'package:adahi_eidapp/screens/login_screen/login_cubit/login_states.dart';
-import 'package:adahi_eidapp/screens/meat_shops/meat_shops.dart';
+
 //import 'package:adahi_eidapp/screens/start-page_screen/mainpage.dart';
 import 'package:adahi_eidapp/screens/start-page_screen/start_page_screen.dart';
 //import 'package:adahi_eidapp/screens/start-page_screen/start-page_screen.dart';
@@ -217,7 +218,7 @@ class LoginScreen extends StatelessWidget {
       if (password == adminPassword) {
         LoginCubit.get(context).signInAsAdmin(adminMode);
       } else {
-        showToast(massage: 'Wong Password', color: ToastColors.ERROR);
+        showToast(massage: 'Wrong Password', color: ToastColors.ERROR);
       }
     }
   }

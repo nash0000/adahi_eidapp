@@ -1,8 +1,9 @@
 import 'package:adahi_eidapp/screens/home_screens/home_screens.dart';
-import 'package:adahi_eidapp/screens/meat_shops/meat_shops.dart';
+
 import 'package:adahi_eidapp/screens/settings_screen/settings_screen.dart';
 import 'package:adahi_eidapp/screens/start-page_screen/dark_mode_screen.dart';
 import 'package:adahi_eidapp/screens/start-page_screen/language_screen.dart';
+import 'package:adahi_eidapp/screens/user_meat_shops/user_meat_shops.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:adahi_eidapp/shared/app_helper_widgets.dart';
 import 'package:adahi_eidapp/shared/app_strings.dart';
@@ -296,7 +297,8 @@ class _StartPageState extends State<StartPage> {
                                     onChanged: (areaValue) {
                                       setState(() {
                                         selectedAreas = areaValue;
-                                        // navigateTo(context, UserMeatShops());
+                                        navigateTo(context, UserMeatShops());
+                                        // UserMeatShops());
                                       });
                                     },
                                     value: selectedAreas,

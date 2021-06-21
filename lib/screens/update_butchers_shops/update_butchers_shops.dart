@@ -1,5 +1,6 @@
 import 'package:adahi_eidapp/models/butcher_model.dart';
-import 'package:adahi_eidapp/screens/meat_shops/meat_shops.dart';
+import 'package:adahi_eidapp/screens/admin_meat_shops/admin_meat_shops.dart';
+
 import 'package:adahi_eidapp/shared/app_enum.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:adahi_eidapp/shared/app_helper_widgets.dart';

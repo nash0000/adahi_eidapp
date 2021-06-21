@@ -1,18 +1,20 @@
 import 'package:adahi_eidapp/database/remote_db/cloud_firesore.dart';
 import 'package:adahi_eidapp/models/butcher_model.dart';
-import 'package:adahi_eidapp/screens/meat_shops/meat_cubit/meat_shops-states.dart';
+import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/meat_shops-states.dart';
+import 'package:adahi_eidapp/screens/user_meat_shops/user_meat_shops_cubit/user_meatshops_state.dart';
+
 import 'package:adahi_eidapp/shared/app_strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MeatShopsCubit extends Cubit<MeatShopsStates> {
-  MeatShopsCubit() : super(MeatShopsInitialState());
+class UserMeatShopsCubit extends Cubit<UserMeatShopsStates> {
+  UserMeatShopsCubit() : super(UserMeatShopsInitialState());
   List<ButcherModel> butchers = [];
 
-  static MeatShopsCubit get(context) => BlocProvider.of(context);
+  static UserMeatShopsCubit get(context) => BlocProvider.of(context);
 
   loadAllMeatShopsForUser() {
-    emit(MeatShopsLoadingState());
+    emit(UserMeatShopsLoadingState());
     CloudService.getButchers()
         .then((value) {
           for (var doc in value.docs) {
@@ -28,23 +30,23 @@ class MeatShopsCubit extends Cubit<MeatShopsStates> {
                 img: data[kButcherImg]));
           }
         })
-        .then((value) => emit(MeatShopsSuccessState()))
+        .then((value) => emit(UserMeatShopsSuccessState()))
         .catchError(
-          (error) => emit(MeatShopsErrorState(error.toString())),
+          (error) => emit(UserMeatShopsErrorState(error.toString())),
         )
         .catchError(
-          (error) => emit(MeatShopsErrorState(error.toString())),
+          (error) => emit(UserMeatShopsErrorState(error.toString())),
         );
   }
 
   deleteMeatShop({@required butcherShopID, @required index}) {
-    emit(MeatShopsLoadingState());
+    emit(UserMeatShopsLoadingState());
 
     CloudService.deleteButcherInfo(butcherShopID: butcherShopID).then((value) {
       butchers.removeAt(index);
-      emit(MeatShopsSuccessState());
+      emit(UserMeatShopsSuccessState());
     }).catchError((e) {
-      emit(MeatShopsErrorState(e.toString()));
+      emit(UserMeatShopsErrorState(e.toString()));
     });
   }
 }

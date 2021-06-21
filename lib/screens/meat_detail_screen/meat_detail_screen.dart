@@ -3,7 +3,8 @@ import 'package:adahi_eidapp/screens/add_meat/add_meat_screen.dart';
 import 'package:adahi_eidapp/screens/cart/cart_screen.dart';
 import 'package:adahi_eidapp/screens/meat_detail_screen/meat_detail_cubit/meat_detail_cubit.dart';
 import 'package:adahi_eidapp/screens/meat_detail_screen/meat_detail_cubit/meat_details_states.dart';
-import 'package:adahi_eidapp/screens/meat_shops/meat_shops.dart';
+import 'package:adahi_eidapp/screens/user_meat_shops/user_meat_shops.dart';
+
 import 'package:adahi_eidapp/shared/app_enum.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:flutter/cupertino.dart';
@@ -342,8 +343,8 @@ class MeatDetail extends StatelessWidget {
                       elevation: 0.2,
                       onPressed: () {
                         //CartScreen();
-                        navigateTo(context, AddMeat());
-                        // navigateTo(context, MeatShops());
+                        navigateTo(context, UserMeatShops());
+                        // navigateTo(context, UserMeatShops());
                       },
                       color: Colors.teal.shade700,
                       textColor: Colors.white,

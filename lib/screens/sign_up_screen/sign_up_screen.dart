@@ -83,7 +83,7 @@ class SignUpScreen extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: 25.0,
+                          height: 10.0,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20),
@@ -95,7 +95,7 @@ class SignUpScreen extends StatelessWidget {
                                   controller: nameController,
                                   prefixIcon: Icons.person),
                               SizedBox(
-                                height: 20.0,
+                                height: 10.0,
                               ),
                               CustomTextFormField(
                                   title: 'Email',
@@ -103,7 +103,7 @@ class SignUpScreen extends StatelessWidget {
                                   controller: emailController,
                                   prefixIcon: Icons.email),
                               SizedBox(
-                                height: 20.0,
+                                height: 10.0,
                               ),
                               CustomTextFormField(
                                 title: 'Password',
@@ -113,7 +113,7 @@ class SignUpScreen extends StatelessWidget {
                                 obscureText: true,
                               ),
                               SizedBox(
-                                height: 20.0,
+                                height: 10.0,
                               ),
                               CustomTextFormField(
                                 title: 'Phone',
@@ -122,7 +122,7 @@ class SignUpScreen extends StatelessWidget {
                                 prefixIcon: Icons.phone_android,
                               ),
                               SizedBox(
-                                height: 20.0,
+                                height: 10.0,
                               ),
                               CustomTextFormField(
                                 title: 'address',
@@ -134,7 +134,7 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 25.0,
+                          height: 20.0,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20),

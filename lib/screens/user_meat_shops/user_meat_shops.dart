@@ -1,40 +1,38 @@
-import 'package:adahi_eidapp/database/remote_db/cloud_firesore.dart';
 import 'package:adahi_eidapp/models/butcher_model.dart';
-import 'package:adahi_eidapp/screens/add_butchers_shops/add_butchers_shops.dart';
 import 'package:adahi_eidapp/screens/meat_detail_screen/meat_detail_screen.dart';
-import 'package:adahi_eidapp/screens/meat_shops/meat_cubit/meat_shops-states.dart';
-import 'package:adahi_eidapp/screens/meat_shops/meat_cubit/meat_shops_cubit.dart';
-import 'package:adahi_eidapp/screens/update_butchers_shops/update_butchers_shops.dart';
+import 'package:adahi_eidapp/screens/user_meat_shops/user_meat_shops_cubit/user_meatshops_cubit.dart';
+import 'package:adahi_eidapp/screens/user_meat_shops/user_meat_shops_cubit/user_meatshops_state.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AdminMeatShops extends StatelessWidget {
+class UserMeatShops extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) => MeatShopsCubit()..loadAllMeatShopsForUser(),
-        child: BlocConsumer<MeatShopsCubit, MeatShopsStates>(
+        create: (context) => UserMeatShopsCubit()..loadAllMeatShopsForUser(),
+        child: BlocConsumer<UserMeatShopsCubit, UserMeatShopsStates>(
           listener: (context, state) {},
           builder: (context, state) {
-            List<ButcherModel> butchers = MeatShopsCubit.get(context).butchers;
+            List<ButcherModel> butchers =
+                UserMeatShopsCubit.get(context).butchers;
             return Scaffold(
               appBar: AppBar(
-                title: Text('Admin Meat Shops'),
-                actions: [
-                  IconButton(
-                      icon: Icon(Icons.add),
-                      onPressed: () {
-                        navigateTo(context, AddButchersShops());
-                      }),
-                  SizedBox(
-                    width: 20.0,
-                  )
-                ],
+                title: Text('User Meat Shops'),
+                // actions: [
+                //   IconButton(
+                //       icon: Icon(Icons.add),
+                //       onPressed: () {
+                //         //   navigateTo(context, AddButchersShops());
+                //       }),
+                //   SizedBox(
+                //     width: 20.0,
+                //   )
+                // ],
                 backgroundColor: Colors.teal,
               ),
               body: ConditionalBuilder(
-                condition: state is! MeatShopsLoadingState,
+                condition: state is! UserMeatShopsLoadingState,
                 builder: (context) => Column(
                   children: [
                     SizedBox(
@@ -124,34 +122,35 @@ class AdminMeatShops extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    Column(
-                                      children: [
-                                        IconButton(
-                                            icon: Icon(Icons.edit),
-                                            onPressed: () {
-                                              navigateTo(
-                                                  context,
-                                                  UpdateButchersShops(
-                                                    butcherSHopID:
-                                                        butchers[index]
-                                                            .butcherID,
-                                                  ));
-                                            }),
-                                        SizedBox(
-                                          height: 20.0,
-                                        ),
-                                        IconButton(
-                                            icon: Icon(Icons.delete),
-                                            onPressed: () {
-                                              MeatShopsCubit.get(context)
-                                                  .deleteMeatShop(
-                                                      index: index,
-                                                      butcherShopID:
-                                                          butchers[index]
-                                                              .butcherID);
-                                            }),
-                                      ],
-                                    ),
+                                    // Column(
+                                    //   children: [
+                                    //     IconButton(
+                                    //         icon: Icon(Icons.edit),
+                                    //         onPressed: () {
+                                    //           // navigateTo(
+                                    //           //     context,
+                                    //           //     UpdateButchersShops(
+                                    //           //       butcherSHopID:
+                                    //           //           butchers[index]
+                                    //           //               .butcherID,
+                                    //           //     ));
+                                    //         }),
+                                    //     SizedBox(
+                                    //       height: 20.0,
+                                    //     ),
+                                    //     IconButton(
+                                    //       icon: Icon(Icons.delete),
+                                    //       // onPressed: () {
+                                    //       //   AdminMeatShopsCubit.get(context)
+                                    //       //       .deleteMeatShop(
+                                    //       //           index: index,
+                                    //       //           butcherShopID:
+                                    //       //               butchers[index]
+                                    //       //                   .butcherID);
+                                    //       // }
+                                    //     ),
+                                    //   ],
+                                    // ),
                                   ],
                                 ),
                               ),

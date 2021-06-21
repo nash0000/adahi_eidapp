@@ -1,9 +1,4 @@
-//import 'package:adahi_app/screens/butcher/products_screen.dart';
-
-//import 'package:adahi_app/shared/components/components.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'package:adahi_eidapp/screens/meat_shops/meat_shops.dart';
+import 'package:adahi_eidapp/screens/admin_meat_shops/admin_meat_shops.dart';
 import 'package:adahi_eidapp/screens/start-page_screen/navigationdrawerwidget.dart';
 import 'package:adahi_eidapp/screens/start-page_screen/navigationprovider.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
