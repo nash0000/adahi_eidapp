@@ -1,4 +1,5 @@
 import 'package:adahi_eidapp/models/butcher_model.dart';
+import 'package:adahi_eidapp/screens/cart/cart_screen.dart';
 import 'package:adahi_eidapp/screens/meat_detail_screen/meat_detail_screen.dart';
 import 'package:adahi_eidapp/screens/user_meat_shops/user_meat_shops_cubit/user_meatshops_cubit.dart';
 import 'package:adahi_eidapp/screens/user_meat_shops/user_meat_shops_cubit/user_meatshops_state.dart';
@@ -119,38 +120,55 @@ class UserMeatShops extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.grey),
                                           ),
+                                          // Expanded(
+                                          //   child: MaterialButton(
+                                          //     elevation: 0.2,
+                                          //     onPressed: () {
+                                          //       navigateTo(
+                                          //           context, CartScreen());
+                                          //     },
+                                          //     color: Colors.teal.shade700,
+                                          //     textColor: Colors.white,
+                                          //     child: Text(
+                                          //       'Go',
+                                          //       style: TextStyle(
+                                          //           fontWeight: FontWeight.bold,
+                                          //           fontSize: 16.0),
+                                          //     ),
+                                          //   ),
+                                          // ),
                                         ],
                                       ),
                                     ),
-                                    // Column(
-                                    //   children: [
-                                    //     IconButton(
-                                    //         icon: Icon(Icons.edit),
-                                    //         onPressed: () {
-                                    //           // navigateTo(
-                                    //           //     context,
-                                    //           //     UpdateButchersShops(
-                                    //           //       butcherSHopID:
-                                    //           //           butchers[index]
-                                    //           //               .butcherID,
-                                    //           //     ));
-                                    //         }),
-                                    //     SizedBox(
-                                    //       height: 20.0,
-                                    //     ),
-                                    //     IconButton(
-                                    //       icon: Icon(Icons.delete),
-                                    //       // onPressed: () {
-                                    //       //   AdminMeatShopsCubit.get(context)
-                                    //       //       .deleteMeatShop(
-                                    //       //           index: index,
-                                    //       //           butcherShopID:
-                                    //       //               butchers[index]
-                                    //       //                   .butcherID);
-                                    //       // }
-                                    //     ),
-                                    //   ],
-                                    // ),
+                                    //     Column(
+                                    //       children: [
+                                    //         IconButton(
+                                    //             icon: Icon(Icons.add),
+                                    //             onPressed: () {
+                                    //               // navigateTo(
+                                    //               //     context,
+                                    //               //     UpdateButchersShops(
+                                    //               //       butcherSHopID:
+                                    //               //           butchers[index]
+                                    //               //               .butcherID,
+                                    //               //     ));
+                                    //             }),
+                                    //         SizedBox(
+                                    //           height: 20.0,
+                                    //         ),
+                                    //     //     IconButton(
+                                    //     //       icon: Icon(Icons.delete),
+                                    //     //       // onPressed: () {
+                                    //     //       //   AdminMeatShopsCubit.get(context)
+                                    //     //       //       .deleteMeatShop(
+                                    //     //       //           index: index,
+                                    //     //       //           butcherShopID:
+                                    //     //       //               butchers[index]
+                                    //     //       //                   .butcherID);
+                                    //     //       // }
+                                    //     //     ),
+                                    //     //   ],
+                                    //     // ),
                                   ],
                                 ),
                               ),

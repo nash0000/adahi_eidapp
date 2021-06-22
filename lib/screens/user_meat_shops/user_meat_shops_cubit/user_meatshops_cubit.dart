@@ -1,6 +1,6 @@
 import 'package:adahi_eidapp/database/remote_db/cloud_firesore.dart';
 import 'package:adahi_eidapp/models/butcher_model.dart';
-import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/meat_shops-states.dart';
+import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/admin_meat_shops-states.dart';
 import 'package:adahi_eidapp/screens/user_meat_shops/user_meat_shops_cubit/user_meatshops_state.dart';
 
 import 'package:adahi_eidapp/shared/app_strings.dart';
@@ -39,14 +39,14 @@ class UserMeatShopsCubit extends Cubit<UserMeatShopsStates> {
         );
   }
 
-  deleteMeatShop({@required butcherShopID, @required index}) {
-    emit(UserMeatShopsLoadingState());
-
-    CloudService.deleteButcherInfo(butcherShopID: butcherShopID).then((value) {
-      butchers.removeAt(index);
-      emit(UserMeatShopsSuccessState());
-    }).catchError((e) {
-      emit(UserMeatShopsErrorState(e.toString()));
-    });
-  }
+  // deleteMeatShop({@required butcherShopID, @required index}) {
+  //   emit(UserMeatShopsLoadingState());
+  //
+  //   CloudService.deleteButcherInfo(butcherShopID: butcherShopID).then((value) {
+  //     butchers.removeAt(index);
+  //     emit(UserMeatShopsSuccessState());
+  //   }).catchError((e) {
+  //     emit(UserMeatShopsErrorState(e.toString()));
+  //   });
+  // }
 }

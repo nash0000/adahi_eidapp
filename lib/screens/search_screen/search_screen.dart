@@ -19,10 +19,6 @@ class SearchScreen extends StatelessWidget {
             // var shops = SearchCubit.get(context).shops;
 
             return Scaffold(
-              appBar: AppBar(
-                title: Text('Search '),
-                backgroundColor: Colors.teal,
-              ),
               body: Column(
                 children: <Widget>[
                   Padding(

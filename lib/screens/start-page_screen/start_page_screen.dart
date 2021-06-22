@@ -4,6 +4,7 @@ import 'package:adahi_eidapp/screens/settings_screen/settings_screen.dart';
 import 'package:adahi_eidapp/screens/start-page_screen/dark_mode_screen.dart';
 import 'package:adahi_eidapp/screens/start-page_screen/language_screen.dart';
 import 'package:adahi_eidapp/screens/user_meat_shops/user_meat_shops.dart';
+import 'package:adahi_eidapp/screens/welcome_screen/welcome_screen.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:adahi_eidapp/shared/app_helper_widgets.dart';
 import 'package:adahi_eidapp/shared/app_strings.dart';
@@ -99,18 +100,18 @@ class _StartPageState extends State<StartPage> {
             ),
           ),
           Divider(),
-          InkWell(
-            onTap: () {
-              // navigateTo(context, SettingsScreen());
-            },
-            child: ListTile(
-              title: Text('Setting'),
-              leading: Icon(
-                Icons.settings,
-                color: Colors.teal,
-              ),
-            ),
-          ),
+          // InkWell(
+          //   onTap: () {
+          //     navigateTo(context, WelcomeScreen());
+          //   },
+          //   child: ListTile(
+          //     title: Text('Setting'),
+          //     leading: Icon(
+          //       Icons.settings,
+          //       color: Colors.teal,
+          //     ),
+          //   ),
+          // ),
           InkWell(
             onTap: () {},
             child: ListTile(

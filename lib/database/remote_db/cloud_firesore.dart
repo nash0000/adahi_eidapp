@@ -1,4 +1,5 @@
 import 'package:adahi_eidapp/models/butcher_model.dart';
+import 'package:adahi_eidapp/models/cart_model.dart';
 import 'package:adahi_eidapp/models/meat_model.dart';
 import 'package:adahi_eidapp/models/user_model.dart';
 import 'package:adahi_eidapp/shared/app_strings.dart';
@@ -101,5 +102,28 @@ class CloudService {
         .collection(kButcherCollectionName)
         .doc(butcherShopID)
         .delete();
+  }
+
+  static Future<void> updateUserInfo({userDataAsMap, userID}) async {
+    return await _fireStoreInstance
+        .collection(kButcherCollectionName)
+        .doc(userID)
+        .update(userDataAsMap);
+  }
+
+  static Future<void> saveCartInfo({@required CartModel cartModel}) async {
+    DocumentReference ref =
+        _fireStoreInstance.collection(kCartCollectionName).doc();
+
+    await _fireStoreInstance.collection(kCartCollectionName).doc(ref.id).set({
+      kCartID: ref.id,
+      kCartName: cartModel.cartName,
+      kCartQuantity: cartModel.cartQuantity,
+      kCartImg: cartModel.cartImg,
+    });
+  }
+
+  static Future<QuerySnapshot> getCarts() async {
+    return await _fireStoreInstance.collection(kCartCollectionName).get();
   }
 }

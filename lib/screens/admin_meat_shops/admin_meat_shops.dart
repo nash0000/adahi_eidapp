@@ -2,7 +2,7 @@ import 'package:adahi_eidapp/database/remote_db/cloud_firesore.dart';
 import 'package:adahi_eidapp/models/butcher_model.dart';
 import 'package:adahi_eidapp/screens/add_butchers_shops/add_butchers_shops.dart';
 import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/admin_meat_shops_cubit.dart';
-import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/meat_shops-states.dart';
+import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/admin_meat_shops-states.dart';
 import 'package:adahi_eidapp/screens/meat_detail_screen/meat_detail_screen.dart';
 
 import 'package:adahi_eidapp/screens/update_butchers_shops/update_butchers_shops.dart';
@@ -26,6 +26,7 @@ class AdminMeatShops extends StatelessWidget {
                 actions: [
                   IconButton(
                       icon: Icon(Icons.add),
+                      iconSize: 20.0,
                       onPressed: () {
                         navigateTo(context, AddButchersShops());
                       }),
@@ -47,12 +48,12 @@ class AdminMeatShops extends StatelessWidget {
                         padding: EdgeInsets.only(top: 10.0),
                         physics: BouncingScrollPhysics(),
                         itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {
-                            navigateTo(
-                              context,
-                              MeatDetail(),
-                            );
-                          },
+                          // onTap: () {
+                          //   navigateTo(
+                          //     context,
+                          //     MeatDetail(),
+                          //   );
+                          // },
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.0),
                             child: Container(
@@ -75,10 +76,12 @@ class AdminMeatShops extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     CircleAvatar(
-                                      backgroundColor: Colors.amberAccent,
-                                      // child: Image.network(
-                                      //   '${butchers[index].img}',
-                                      // ),
+                                      backgroundColor: Colors.teal,
+                                      // child: Image.asset(
+                                      //  'assets/images/sheepApp.jpeg'),
+                                      child: Image.network(
+                                        '${butchers[index].img}',
+                                      ),
                                       radius: 35.0,
                                     ),
                                     SizedBox(
@@ -113,10 +116,10 @@ class AdminMeatShops extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.grey),
+                                                color: Colors.grey.shade900),
                                           ),
                                           Text(
-                                            '${butchers[index].butcherPhone}',
+                                            '${butchers[index].butcherArea}',
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
@@ -129,7 +132,8 @@ class AdminMeatShops extends StatelessWidget {
                                     Column(
                                       children: [
                                         IconButton(
-                                            icon: Icon(Icons.edit),
+                                            icon: Icon(Icons.edit_outlined),
+                                            color: Colors.teal,
                                             onPressed: () {
                                               navigateTo(
                                                   context,
@@ -143,7 +147,9 @@ class AdminMeatShops extends StatelessWidget {
                                           height: 20.0,
                                         ),
                                         IconButton(
-                                            icon: Icon(Icons.delete),
+                                            icon: Icon(
+                                                Icons.delete_forever_rounded),
+                                            color: Colors.red.shade900,
                                             onPressed: () {
                                               AdminMeatShopsCubit.get(context)
                                                   .deleteMeatShop(

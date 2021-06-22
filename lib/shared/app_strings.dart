@@ -46,3 +46,9 @@ const String kAvailableMeat = 'meatID';
 
 const kIamAdmin = 'i\'m an admin';
 const kIamUser = 'i\'m an user';
+
+const String kCartCollectionName = 'cart';
+const String kCartID = 'orderID';
+const String kCartName = 'cartName';
+const String kCartImg = 'cartImg';
+const String kCartQuantity = 'cartQuantity';

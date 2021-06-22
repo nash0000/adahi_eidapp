@@ -1,6 +1,6 @@
 class OrderModel {
   String orderID;
-  String orderTime;
+  String orderMeatType;
   String userEmail;
   double orderTotalPrice;
   String orderAddress;
@@ -8,7 +8,7 @@ class OrderModel {
 
   OrderModel({
     this.orderID,
-    this.orderTime,
+    this.orderMeatType,
     this.userEmail,
     this.orderTotalPrice,
     this.orderAddress,

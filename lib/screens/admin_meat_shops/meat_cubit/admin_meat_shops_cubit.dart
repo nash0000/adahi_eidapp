@@ -1,6 +1,6 @@
 import 'package:adahi_eidapp/database/remote_db/cloud_firesore.dart';
 import 'package:adahi_eidapp/models/butcher_model.dart';
-import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/meat_shops-states.dart';
+import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/admin_meat_shops-states.dart';
 
 import 'package:adahi_eidapp/shared/app_strings.dart';
 import 'package:flutter/cupertino.dart';

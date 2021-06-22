@@ -10,3 +10,20 @@ TextStyle kGreen18Bold() => TextStyle(
       fontWeight: FontWeight.bold,
       color: Colors.teal,
     );
+
+TextStyle black20Bold() => TextStyle(
+      fontSize: 20.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.black,
+    );
+
+TextStyle black18Bold() => TextStyle(
+      fontSize: 18.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.black,
+    );
+TextStyle black16Bold() => TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.black,
+    );
