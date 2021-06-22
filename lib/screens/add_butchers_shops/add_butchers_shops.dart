@@ -1,5 +1,6 @@
 import 'package:adahi_eidapp/models/butcher_model.dart';
 import 'package:adahi_eidapp/screens/add_meat/add_meat_screen.dart';
+import 'package:adahi_eidapp/screens/admin_meat_shops/admin_meat_shops.dart';
 import 'package:adahi_eidapp/shared/app_enum.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:adahi_eidapp/shared/app_helper_widgets.dart';
@@ -33,7 +34,7 @@ class AddButchersShops extends StatelessWidget {
 
             if (state is AddButchersShopSuccessState) {
               Navigator.pop(context);
-              // navigateAndFinish(context, AddMeat());
+              navigateTo(context, AddMeat());
               showToast(
                 massage: 'created',
                 color: ToastColors.SUCCESS,
@@ -138,7 +139,7 @@ class AddButchersShops extends StatelessWidget {
                       elevation: 0.2,
                       onPressed: () {
                         //CartScreen();
-                        //  navigateTo(context, AdminPage());
+                        navigateAndFinish(context, AdminMeatShops());
                       },
                       color: Colors.teal.shade700,
                       textColor: Colors.white,
@@ -156,8 +157,6 @@ class AddButchersShops extends StatelessWidget {
                     child: MaterialButton(
                       elevation: 0.2,
                       onPressed: () {
-                        //CartScreen();
-                        // navigateTo(context, AddMeat());
                         // String butcherID = butcherIDController.text;
                         String butcherShopName = butcherShopNameController.text;
                         String butcherEmail = butcherEmailController.text;
@@ -179,40 +178,38 @@ class AddButchersShops extends StatelessWidget {
                           butcherAddress:
                               butcherShopAddressController.text.trim(),
                         ));
-                        // if ( //butcherIDController.text.trim().isEmpty ||
-                        //     butcherShopNameController.text.trim().isEmpty ||
-                        //         butcherEmailController.text.trim().isEmpty ||
-                        //         butcherPasswordController.text.trim().isEmpty ||
-                        //         butcherShopAreaController.text.trim().isEmpty ||
-                        //         butcherShopAddressController.text
-                        //             .trim()
-                        //             .isEmpty ||
-                        //         butcherPhoneController.text.trim().isEmpty) {
-                        //   showToast(
-                        //     massage: 'Please enter your data',
-                        //     color: ToastColors.ERROR,
-                        //   );
-                        // } else {
-                        //   if (!butcherEmailController.text
-                        //       .trim()
-                        //       .contains('@')) {
-                        //     showToast(
-                        //       massage: 'Please enter a valid email',
-                        //       color: ToastColors.ERROR,
-                        //     );
-                        //   } else if (butcherPasswordController.text
-                        //           .trim()
-                        //           .length <
-                        //       6) {
-                        //     showToast(
-                        //       massage: 'your password must be at least 6 char',
-                        //       color: ToastColors.ERROR,
-                        //     );
-                        //   } else {
-                        //
-                        //   }
-                        //   print('========');
-                        // }
+                        if ( //butcherIDController.text.trim().isEmpty ||
+                            butcherShopNameController.text.trim().isEmpty ||
+                                butcherEmailController.text.trim().isEmpty ||
+                                butcherPasswordController.text.trim().isEmpty ||
+                                butcherShopAreaController.text.trim().isEmpty ||
+                                butcherShopAddressController.text
+                                    .trim()
+                                    .isEmpty ||
+                                butcherPhoneController.text.trim().isEmpty) {
+                          showToast(
+                            massage: 'Please enter your data',
+                            color: ToastColors.ERROR,
+                          );
+                        } else {
+                          if (!butcherEmailController.text
+                              .trim()
+                              .contains('@')) {
+                            showToast(
+                              massage: 'Please enter a valid email',
+                              color: ToastColors.ERROR,
+                            );
+                          } else if (butcherPasswordController.text
+                                  .trim()
+                                  .length <
+                              6) {
+                            showToast(
+                              massage: 'your password must be at least 6 char',
+                              color: ToastColors.ERROR,
+                            );
+                          } else {}
+                          print('========');
+                        }
                       },
                       color: Colors.red.shade900,
                       textColor: Colors.white,

@@ -55,8 +55,8 @@ class HomeScreens extends StatelessWidget {
               elevation: 0.0,
               items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.local_dining),
-                  label: 'Butcher',
+                  icon: Icon(Icons.account_box_sharp),
+                  label: ' profile',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
@@ -65,8 +65,8 @@ class HomeScreens extends StatelessWidget {
                   label: 'search',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.account_box_sharp),
-                  label: 'profile',
+                  icon: Icon(Icons.local_dining),
+                  label: 'Butcher',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.settings_applications),

@@ -20,16 +20,6 @@ class UserMeatShops extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 title: Text('User Meat Shops'),
-                // actions: [
-                //   IconButton(
-                //       icon: Icon(Icons.add),
-                //       onPressed: () {
-                //         //   navigateTo(context, AddButchersShops());
-                //       }),
-                //   SizedBox(
-                //     width: 20.0,
-                //   )
-                // ],
                 backgroundColor: Colors.teal,
               ),
               body: ConditionalBuilder(
@@ -120,23 +110,6 @@ class UserMeatShops extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.grey),
                                           ),
-                                          // Expanded(
-                                          //   child: MaterialButton(
-                                          //     elevation: 0.2,
-                                          //     onPressed: () {
-                                          //       navigateTo(
-                                          //           context, CartScreen());
-                                          //     },
-                                          //     color: Colors.teal.shade700,
-                                          //     textColor: Colors.white,
-                                          //     child: Text(
-                                          //       'Go',
-                                          //       style: TextStyle(
-                                          //           fontWeight: FontWeight.bold,
-                                          //           fontSize: 16.0),
-                                          //     ),
-                                          //   ),
-                                          // ),
                                         ],
                                       ),
                                     ),

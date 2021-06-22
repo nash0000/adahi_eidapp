@@ -12,16 +12,16 @@ class HomeCubit extends Cubit<HomeStates> {
   static HomeCubit get(context) => BlocProvider.of(context);
 
   var widget = [
-    ButcherScreen(),
-    SearchScreen(),
     ProfileScreen(),
+    SearchScreen(),
+    ButcherScreen(),
     SettingsScreen(),
   ];
 
   var titles = [
-    'Butcher ',
-    'Search',
     'Profile',
+    'Search',
+    'Butcher ',
     'Settings',
   ];
 
