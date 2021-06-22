@@ -27,4 +27,7 @@ class AuthenticationService {
 
   //static Future<UserCredential> signOut(){}
 
+  static getUserId() {
+    return _auth.currentUser.uid;
+  }
 }

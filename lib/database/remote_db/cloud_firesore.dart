@@ -1,10 +1,13 @@
 import 'package:adahi_eidapp/models/butcher_model.dart';
 import 'package:adahi_eidapp/models/cart_model.dart';
 import 'package:adahi_eidapp/models/meat_model.dart';
+import 'package:adahi_eidapp/models/order_model.dart';
 import 'package:adahi_eidapp/models/user_model.dart';
 import 'package:adahi_eidapp/shared/app_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+
+import 'authentication.dart';
 
 class CloudService {
   static FirebaseFirestore _fireStoreInstance;
@@ -110,16 +113,16 @@ class CloudService {
         .update(userDataAsMap);
   }
 
-  static Future<void> saveCartInfo({@required CartModel cartModel}) async {
+  static Future<void> saveOrder({@required OrderModel orderModel}) async {
     DocumentReference ref =
         _fireStoreInstance.collection(kCartCollectionName).doc();
-
-    await _fireStoreInstance.collection(kCartCollectionName).doc(ref.id).set({
-      kCartID: ref.id,
-      kCartName: cartModel.cartName,
-      kCartQuantity: cartModel.cartQuantity,
-      kCartImg: cartModel.cartImg,
-    });
+    print('${AuthenticationService.getUserId()}');
+    // await _fireStoreInstance.collection(kCartCollectionName).doc(ref.id).set({
+    //   kCartID: ref.id,
+    //   kCartName: cartModel.cartName,
+    //   kCartQuantity: cartModel.cartQuantity,
+    //   kCartImg: cartModel.cartImg,
+    // });
   }
 
   static Future<QuerySnapshot> getCarts() async {
