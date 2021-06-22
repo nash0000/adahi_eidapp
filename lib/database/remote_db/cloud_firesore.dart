@@ -63,9 +63,8 @@ class CloudService {
   }
 
   static Future<QuerySnapshot> getButchers() async {
-    print('=============================================');
-    print('getButchers Triggered');
-    print('=============================================');
+    //  print('=============================================');
+
     return await _fireStoreInstance.collection(kButcherCollectionName).get();
   }
 
