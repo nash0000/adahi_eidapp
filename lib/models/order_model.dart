@@ -1,10 +1,9 @@
 class OrderModel {
   String orderID;
   String orderMeatType;
-
   double orderTotalPrice;
   String orderAddress;
-  String availableMeatID;
+  String orderAvailableForDeliveryID;
   String orderWeight;
 
   OrderModel({
@@ -12,7 +11,7 @@ class OrderModel {
     this.orderMeatType,
     this.orderTotalPrice,
     this.orderAddress,
-    this.availableMeatID,
+    this.orderAvailableForDeliveryID,
     this.orderWeight,
   });
 }

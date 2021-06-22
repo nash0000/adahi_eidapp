@@ -1,10 +1,7 @@
-import 'package:adahi_eidapp/database/remote_db/cloud_firesore.dart';
 import 'package:adahi_eidapp/models/butcher_model.dart';
 import 'package:adahi_eidapp/screens/add_butchers_shops/add_butchers_shops.dart';
-import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/admin_meat_shops_cubit.dart';
 import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/admin_meat_shops-states.dart';
-import 'package:adahi_eidapp/screens/meat_detail_screen/meat_detail_screen.dart';
-
+import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/admin_meat_shops_cubit.dart';
 import 'package:adahi_eidapp/screens/update_butchers_shops/update_butchers_shops.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:conditional_builder/conditional_builder.dart';
@@ -48,12 +45,6 @@ class AdminMeatShops extends StatelessWidget {
                         padding: EdgeInsets.only(top: 10.0),
                         physics: BouncingScrollPhysics(),
                         itemBuilder: (context, index) => GestureDetector(
-                          // onTap: () {
-                          //   navigateTo(
-                          //     context,
-                          //     MeatDetail(),
-                          //   );
-                          // },
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.0),
                             child: Container(
@@ -77,10 +68,11 @@ class AdminMeatShops extends StatelessWidget {
                                   children: [
                                     CircleAvatar(
                                       backgroundColor: Colors.teal,
-                                      // child: Image.asset(
-                                      //  'assets/images/sheepApp.jpeg'),
-                                      child: Image.network(
-                                        '${butchers[index].img}',
+                                      child: Text(
+                                        '${butchers[index].butcherMeatPrice}',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 32),
                                       ),
                                       radius: 35.0,
                                     ),
@@ -120,6 +112,14 @@ class AdminMeatShops extends StatelessWidget {
                                           ),
                                           Text(
                                             '${butchers[index].butcherArea}',
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.grey),
+                                          ),
+                                          Text(
+                                            '${butchers[index].butcherMeatType}',
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(

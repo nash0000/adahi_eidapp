@@ -1,177 +1,167 @@
-import 'package:adahi_eidapp/database/remote_db/cloud_firesore.dart';
-import 'package:adahi_eidapp/models/meat_model.dart';
-import 'package:adahi_eidapp/shared/app_colors.dart';
-import 'package:adahi_eidapp/shared/app_strings.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class OrderScreen extends StatefulWidget {
-  const OrderScreen({Key key}) : super(key: key);
+import '../../models/order_model.dart';
+import '../../shared/app_enum.dart';
+import '../../shared/app_helper_methods.dart';
+import '../../shared/app_helper_widgets.dart';
+import '../user_meat_shops/user_meat_shops.dart';
+import 'order_cubit/order_cubit.dart';
+import 'order_cubit/order_states.dart';
 
-  @override
-  _OrderScreenState createState() => _OrderScreenState();
-}
+class OrderScreen extends StatelessWidget {
+  final orderAddressController = TextEditingController();
+  final orderWeightController = TextEditingController();
 
-class _OrderScreenState extends State<OrderScreen> {
-  int selectedValue = 0;
-  bool isChecked = false;
+  final phoneNumber;
+  final meatPrice;
+  final avalibleMeatType;
+
+  OrderScreen(
+      {@required this.phoneNumber,
+      @required this.meatPrice,
+      @required this.avalibleMeatType});
 
   @override
   Widget build(BuildContext context) {
-    // CloudService.saveOrder(orderModel: orderModel)
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(' your Order '),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ListTile(
-                leading: CircleAvatar(
-                  radius: 25.0,
-                  backgroundColor: Colors.blue,
-                ),
-                title: Text('shop name'),
-                subtitle: Text('description'),
-              ),
-              Divider(
-                color: Colors.grey,
-                thickness: 1.0,
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                Container(
-                  decoration: BoxDecoration(color: Colors.grey[200]),
-                  width: 200.0,
-                  // height: 10.0,
-                  alignment: Alignment.center,
-                  child: Row(
-                    children: [
-                      SizedBox(),
-                      DropdownButton(
-                        items: [],
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                // Text(' : Service  '),
-                Container(
-                  decoration: BoxDecoration(color: Colors.grey[200]),
-                  width: 200.0,
-                  // height: 10.0,
-                  alignment: Alignment.center,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      DropdownButton(
-                        items: [],
-                      ),
-                    ],
-                  ),
-                ),
-                Divider(
-                  color: Colors.grey,
-                  thickness: 1.0,
-                ),
-              ]),
-              SizedBox(
-                height: 10.0,
-              ),
-              Text(
-                '  Service :  ',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+    return BlocProvider(
+      create: (context) => OrderCubit(),
+      child: BlocConsumer<OrderCubit, OrderStates>(
+        listener: (context, state) {
+          if (state is OrderLoadingState) {
+            showProgressDialog(
+              context: context,
+              text: 'please wait ...',
+            );
+          }
 
-              Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                Row(
+          if (state is OrderSuccessState) {
+            Navigator.pop(context);
+            navigateTo(context, UserMeatShops());
+          }
+
+          if (state is OrderErrorState) {
+            showToast(massage: 'Authentication', color: ToastColors.ERROR);
+          }
+        },
+        builder: (context, state) => Scaffold(
+            appBar: AppBar(
+              elevation: 0.1,
+              title: Text('Meat Detail'),
+              backgroundColor: Colors.teal,
+            ),
+            body: Padding(
+              padding: EdgeInsets.all(20),
+              child: SingleChildScrollView(
+                child: Column(
                   children: [
-                    Text(' small pieces '),
-                    Checkbox(
-                        value: isChecked,
-                        onChanged: (checked) {
-                          checked = isChecked;
-                        }),
+                    Text(
+                      'Available Meat: $avalibleMeatType',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 30.0,
+                    ),
+                    Text(
+                      'Click Me: $phoneNumber to call',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 30.0,
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    CustomTextFormField(
+                      title: 'Meat Weight',
+                      keyboardType: TextInputType.number,
+                      controller: orderWeightController,
+                      prefixIcon: Icons.shopping_bag,
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    CustomTextFormField(
+                        title: 'Your Address',
+                        keyboardType: TextInputType.text,
+                        controller: orderAddressController,
+                        prefixIcon: Icons.email),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      'One KG price: $meatPrice JD',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    MaterialButton(
+                      color: Colors.teal,
+                      height: 50.0,
+                      onPressed: () {
+                        OrderCubit.get(context).calculatePrice(
+                            meatPrice: meatPrice,
+                            meatWeight: orderWeightController.text.trim());
+                      },
+                      child: Text(
+                        'Calculate Price',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      'Total price: ${OrderCubit.get(context).totalPrice} JD',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    MaterialButton(
+                      color: Colors.teal,
+                      height: 50.0,
+                      onPressed: () {
+                        OrderCubit.get(context).saveOrder(
+                            orderModel: OrderModel(
+                                orderMeatType: avalibleMeatType,
+                                orderWeight: orderWeightController.text.trim(),
+                                orderAddress:
+                                    orderAddressController.text.trim()));
+                      },
+                      child: Text(
+                        'Submit Order',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
                   ],
                 ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Row(
-                  children: [
-                    Text(' big pieces '),
-                    Checkbox(
-                        value: isChecked,
-                        onChanged: (checked) {
-                          checked = isChecked;
-                        }),
-                  ],
-                ),
-              ]),
-              Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                Row(
-                  children: [
-                    Text(' finely chopped'),
-                    Checkbox(
-                        value: isChecked,
-                        onChanged: (checked) {
-                          checked = isChecked;
-                        }),
-                  ],
-                ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Row(
-                  children: [
-                    Text(' coarsely chopped '),
-                    Checkbox(
-                        value: isChecked,
-                        onChanged: (checked) {
-                          checked = isChecked;
-                        }),
-                  ],
-                ),
-              ]),
-              Divider(
-                color: Colors.grey,
-                thickness: 1.0,
               ),
-              // Transform.scale(
-              //   scale: 1.5,
-              //   child:
-              RadioListTile<int>(
-                value: 1,
-                groupValue: selectedValue,
-                title: Text(
-                  'Delivery ? ',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                onChanged: (value) => setState(() => selectedValue),
-              ),
-              // ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Divider(
-                color: Colors.grey,
-                thickness: 1.0,
-              ),
-            ],
-          ),
-        ),
+            )),
       ),
     );
   }
 }
-
-//%%%%%%%%%%%%%

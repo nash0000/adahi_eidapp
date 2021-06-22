@@ -10,3 +10,5 @@ class OrderErrorState extends OrderStates {
   final error;
   OrderErrorState(this.error);
 }
+
+class OrderCalculatePriceState extends OrderStates {}

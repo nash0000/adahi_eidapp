@@ -1,24 +1,19 @@
-import 'package:adahi_eidapp/models/butcher_model.dart';
-import 'package:adahi_eidapp/screens/add_meat/add_meat_screen.dart';
-import 'package:adahi_eidapp/screens/admin_meat_shops/admin_meat_shops.dart';
 import 'package:adahi_eidapp/shared/app_enum.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:adahi_eidapp/shared/app_helper_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../models/butcher_model.dart';
+import '../admin_meat_shops/admin_meat_shops.dart';
 import 'add_butchersshops_cubit/add_butchers_shops_cubit.dart';
 import 'add_butchersshops_cubit/add_butchers_shops_states.dart';
 
 class AddButchersShops extends StatelessWidget {
-  final butcherIDController = TextEditingController();
   final butcherShopNameController = TextEditingController();
   final butcherPhoneController = TextEditingController();
-  final butcherImgController = TextEditingController();
-  final butcherShopAddressController = TextEditingController();
   final butcherShopAreaController = TextEditingController();
-  final butcherEmailController = TextEditingController();
-  final butcherPasswordController = TextEditingController();
+  final butcherMeatPriceController = TextEditingController();
 
   @override
   Widget build(BuildContext context) => BlocProvider(
@@ -34,7 +29,7 @@ class AddButchersShops extends StatelessWidget {
 
             if (state is AddButchersShopSuccessState) {
               Navigator.pop(context);
-              navigateTo(context, AddMeat());
+              navigateTo(context, AdminMeatShops());
               showToast(
                 massage: 'created',
                 color: ToastColors.SUCCESS,
@@ -71,7 +66,7 @@ class AddButchersShops extends StatelessWidget {
                               height: 20.0,
                             ),
                             CustomTextFormField(
-                                title: 'ShopName',
+                                title: 'Shop Name',
                                 keyboardType: TextInputType.text,
                                 controller: butcherShopNameController,
                                 prefixIcon: Icons.person),
@@ -79,7 +74,7 @@ class AddButchersShops extends StatelessWidget {
                               height: 10.0,
                             ),
                             CustomTextFormField(
-                              title: 'butcherPhone',
+                              title: 'Phone',
                               controller: butcherPhoneController,
                               keyboardType: TextInputType.number,
                               prefixIcon: Icons.phone_android,
@@ -88,35 +83,59 @@ class AddButchersShops extends StatelessWidget {
                               height: 10.0,
                             ),
                             CustomTextFormField(
-                                title: 'Email',
-                                controller: butcherEmailController,
-                                prefixIcon: Icons.email),
+                                title: 'Shop Area',
+                                controller: butcherShopAreaController,
+                                prefixIcon: Icons.location_city),
+                            SizedBox(
+                              height: 10.0,
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(10.0),
+                              decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      width: 1.0,
+                                      style: BorderStyle.solid,
+                                      color: Colors.teal),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15.0)),
+                                ),
+                              ),
+                              child: DropdownButton<String>(
+                                value:
+                                    AddButchersShopCubit.get(context).meatType,
+                                elevation: 16,
+                                isExpanded: true,
+                                style: const TextStyle(color: Colors.teal),
+                                icon: const Icon(Icons.arrow_drop_down),
+                                iconSize: 42,
+                                underline: SizedBox(),
+                                onChanged: (newValue) {
+                                  AddButchersShopCubit.get(context)
+                                      .changeMeatTypeState(
+                                          newSelectedMeatType: newValue);
+                                },
+                                items: <String>[
+                                  'Balady',
+                                  'Romani',
+                                  'Australy',
+                                  'Nuzliandy'
+                                ].map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
                             SizedBox(
                               height: 10.0,
                             ),
                             CustomTextFormField(
-                              title: 'Password',
-                              controller: butcherPasswordController,
-                              keyboardType: TextInputType.visiblePassword,
-                              prefixIcon: Icons.lock,
-                              obscureText: true,
-                            ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
-                            CustomTextFormField(
-                              title: 'ShopAddress',
-                              controller: butcherShopAddressController,
+                              title: 'Price',
+                              controller: butcherMeatPriceController,
                               keyboardType: TextInputType.text,
-                            ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
-                            CustomTextFormField(
-                              title: 'butcherShopArea',
-                              controller: butcherShopAreaController,
-                              keyboardType: TextInputType.text,
-                              prefixIcon: Icons.place_rounded,
+                              prefixIcon: Icons.monetization_on,
                             ),
                           ],
                         ),
@@ -129,107 +148,22 @@ class AddButchersShops extends StatelessWidget {
                 ),
               ),
             ),
-            ////////// bottomNavigationBar/////////////////
-            bottomNavigationBar: Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: MaterialButton(
-                      elevation: 0.2,
-                      onPressed: () {
-                        //CartScreen();
-                        navigateAndFinish(context, AdminMeatShops());
-                      },
-                      color: Colors.teal.shade700,
-                      textColor: Colors.white,
-                      child: Text(
-                        'Back ',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16.0),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Expanded(
-                    child: MaterialButton(
-                      elevation: 0.2,
-                      onPressed: () {
-                        // String butcherID = butcherIDController.text;
-                        String butcherShopName = butcherShopNameController.text;
-                        String butcherEmail = butcherEmailController.text;
-                        String butcherPassword = butcherPasswordController.text;
-                        String butcherArea = butcherShopAreaController.text;
-                        String butcherAddress =
-                            butcherShopAddressController.text;
-                        String butcherPhone = butcherPhoneController.text;
-                        AddButchersShopCubit.get(context).saveButcherInfo(
-                            butcherModel: ButcherModel(
-                          //  butcherID: butcherIDController.text.trim(),
-                          butcherEmail: butcherEmailController.text.trim(),
-                          butcherPassword:
-                              butcherPasswordController.text.trim(),
-                          butcherShopName:
-                              butcherShopNameController.text.trim(),
-                          butcherPhone: butcherPhoneController.text.trim(),
-                          butcherArea: butcherShopAreaController.text.trim(),
-                          butcherAddress:
-                              butcherShopAddressController.text.trim(),
-                        ));
-                        if ( //butcherIDController.text.trim().isEmpty ||
-                            butcherShopNameController.text.trim().isEmpty ||
-                                butcherEmailController.text.trim().isEmpty ||
-                                butcherPasswordController.text.trim().isEmpty ||
-                                butcherShopAreaController.text.trim().isEmpty ||
-                                butcherShopAddressController.text
-                                    .trim()
-                                    .isEmpty ||
-                                butcherPhoneController.text.trim().isEmpty) {
-                          showToast(
-                            massage: 'Please enter your data',
-                            color: ToastColors.ERROR,
-                          );
-                        } else {
-                          if (!butcherEmailController.text
-                              .trim()
-                              .contains('@')) {
-                            showToast(
-                              massage: 'Please enter a valid email',
-                              color: ToastColors.ERROR,
-                            );
-                          } else if (butcherPasswordController.text
-                                  .trim()
-                                  .length <
-                              6) {
-                            showToast(
-                              massage: 'your password must be at least 6 char',
-                              color: ToastColors.ERROR,
-                            );
-                          } else {}
-                          print('========');
-                        }
-                      },
-                      color: Colors.red.shade900,
-                      textColor: Colors.white,
-                      child: Text(
-                        'Save ',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16.0),
-                      ),
-                    ),
-                  ),
-                ],
+            floatingActionButton: FloatingActionButton(
+              child: Icon(
+                Icons.add,
+                size: 40,
               ),
+              onPressed: () {
+                AddButchersShopCubit.get(context).saveButcherInfo(
+                    butcherModel: ButcherModel(
+                  butcherShopName: butcherShopNameController.text.trim(),
+                  butcherPhone: butcherPhoneController.text.trim(),
+                  butcherArea: butcherShopAreaController.text.trim(),
+                  butcherMeatPrice: butcherMeatPriceController.text.trim(),
+                ));
+              },
             ),
-
-/////////===============
-
-            //   height: 35,
           ),
         ),
       );
-
-  /////
 }

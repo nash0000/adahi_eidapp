@@ -1,12 +1,12 @@
 import 'package:adahi_eidapp/models/butcher_model.dart';
-import 'package:adahi_eidapp/screens/cart/cart_screen.dart';
-import 'package:adahi_eidapp/screens/meat_detail_screen/meat_detail_screen.dart';
 import 'package:adahi_eidapp/screens/user_meat_shops/user_meat_shops_cubit/user_meatshops_cubit.dart';
 import 'package:adahi_eidapp/screens/user_meat_shops/user_meat_shops_cubit/user_meatshops_state.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../order_screen/order_screen.dart';
 
 class UserMeatShops extends StatelessWidget {
   @override
@@ -37,7 +37,12 @@ class UserMeatShops extends StatelessWidget {
                           onTap: () {
                             navigateTo(
                               context,
-                              MeatDetail(),
+                              OrderScreen(
+                                meatPrice: butchers[index].butcherMeatPrice,
+                                avalibleMeatType:
+                                    butchers[index].butcherMeatType,
+                                phoneNumber: butchers[index].butcherPhone,
+                              ),
                             );
                           },
                           child: Padding(
@@ -63,9 +68,14 @@ class UserMeatShops extends StatelessWidget {
                                   children: [
                                     CircleAvatar(
                                       backgroundColor: Colors.amberAccent,
-                                      // child: Image.network(
-                                      //   '${butchers[index].img}',
-                                      // ),
+                                      child: Text(
+                                        '${butchers[index].butcherMeatPrice} JD',
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey),
+                                      ),
                                       radius: 35.0,
                                     ),
                                     SizedBox(
@@ -95,15 +105,7 @@ class UserMeatShops extends StatelessWidget {
                                             height: 5.0,
                                           ),
                                           Text(
-                                            butchers[index].butcherPhone,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.grey),
-                                          ),
-                                          Text(
-                                            '${butchers[index].butcherPhone}',
+                                            '${butchers[index].butcherMeatType}',
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
@@ -113,35 +115,6 @@ class UserMeatShops extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    //     Column(
-                                    //       children: [
-                                    //         IconButton(
-                                    //             icon: Icon(Icons.add),
-                                    //             onPressed: () {
-                                    //               // navigateTo(
-                                    //               //     context,
-                                    //               //     UpdateButchersShops(
-                                    //               //       butcherSHopID:
-                                    //               //           butchers[index]
-                                    //               //               .butcherID,
-                                    //               //     ));
-                                    //             }),
-                                    //         SizedBox(
-                                    //           height: 20.0,
-                                    //         ),
-                                    //     //     IconButton(
-                                    //     //       icon: Icon(Icons.delete),
-                                    //     //       // onPressed: () {
-                                    //     //       //   AdminMeatShopsCubit.get(context)
-                                    //     //       //       .deleteMeatShop(
-                                    //     //       //           index: index,
-                                    //     //       //           butcherShopID:
-                                    //     //       //               butchers[index]
-                                    //     //       //                   .butcherID);
-                                    //     //       // }
-                                    //     //     ),
-                                    //     //   ],
-                                    //     // ),
                                   ],
                                 ),
                               ),

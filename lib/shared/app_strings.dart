@@ -8,15 +8,13 @@ const String kUserPassword = 'userPassword';
 const String kUserAddress = 'userAddress';
 const String kUserPhone = 'userPhone';
 
-const String kButcherCollectionName = 'butchers';
-const String kButcherShopName = 'butcherShopName';
+const String kButcherCollectionName = 'Butchers';
 const String kButcherID = 'ButcherID';
-const String kButcherEmail = 'butcherEmail';
-const String kButcherPassword = 'butcherPassword';
-const String kButcherShopAddress = 'butcherAddress';
-const String kButcherPhone = 'butcherPhone';
-const String kButcherArea = 'area';
-const String kButcherImg = 'img';
+const String kButcherShopName = 'ButcherShopName';
+const String kButcherPhone = 'ButcherPhone';
+const String kButcherArea = 'ButcherArea';
+const String kButcherMeatType = 'ButcherMeatType';
+const String kButcherMeatPrice = 'ButcherMeatPrice';
 
 const String kAreaCollectionName = 'areas';
 const String kAreaName = 'areaName';

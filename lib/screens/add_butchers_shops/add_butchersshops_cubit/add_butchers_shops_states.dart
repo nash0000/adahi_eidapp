@@ -10,3 +10,5 @@ class AddButchersShopErrorState extends AddButchersShopStates {
   final error;
   AddButchersShopErrorState(this.error);
 }
+
+class AddButchersShopMeatTypeState extends AddButchersShopStates {}

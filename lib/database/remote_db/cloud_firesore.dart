@@ -1,5 +1,4 @@
 import 'package:adahi_eidapp/models/butcher_model.dart';
-import 'package:adahi_eidapp/models/cart_model.dart';
 import 'package:adahi_eidapp/models/meat_model.dart';
 import 'package:adahi_eidapp/models/order_model.dart';
 import 'package:adahi_eidapp/models/user_model.dart';
@@ -7,7 +6,7 @@ import 'package:adahi_eidapp/shared/app_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
-import 'authentication.dart';
+import '../../shared/app_strings.dart';
 
 class CloudService {
   static FirebaseFirestore _fireStoreInstance;
@@ -52,22 +51,7 @@ class CloudService {
     return await _fireStoreInstance.collection(kButcherCollectionName).get();
   }
 
-  static Future<DocumentReference> createCollectionAndAddButcher(
-      {ButcherModel butcher}) async {
-    return await _fireStoreInstance.collection(kButcherCollectionName).add({
-      kButcherID: butcher.butcherID,
-      kButcherEmail: butcher.butcherEmail,
-      kButcherPassword: butcher.butcherPassword,
-      kButcherPhone: butcher.butcherPhone,
-      kButcherArea: butcher.butcherArea,
-      kButcherShopAddress: butcher.butcherAddress,
-      kButcherImg: butcher.img,
-    });
-  }
-
-  static Future<QuerySnapshot> getButchers() async {
-    //  print('=============================================');
-
+  static Future<QuerySnapshot> getButchersDetails() async {
     return await _fireStoreInstance.collection(kButcherCollectionName).get();
   }
 
@@ -82,12 +66,10 @@ class CloudService {
         .set({
       kButcherID: ref.id,
       kButcherShopName: butcherModel.butcherShopName,
-      kButcherEmail: butcherModel.butcherEmail,
-      kButcherPassword: butcherModel.butcherPassword,
-      kButcherShopAddress: butcherModel.butcherAddress,
       kButcherPhone: butcherModel.butcherPhone,
       kButcherArea: butcherModel.butcherArea,
-      kButcherImg: butcherModel.img,
+      kButcherMeatType: butcherModel.butcherMeatType,
+      kButcherMeatPrice: butcherModel.butcherMeatPrice
     });
   }
 
@@ -115,14 +97,15 @@ class CloudService {
 
   static Future<void> saveOrder({@required OrderModel orderModel}) async {
     DocumentReference ref =
-        _fireStoreInstance.collection(kCartCollectionName).doc();
-    print('${AuthenticationService.getUserId()}');
-    // await _fireStoreInstance.collection(kCartCollectionName).doc(ref.id).set({
-    //   kCartID: ref.id,
-    //   kCartName: cartModel.cartName,
-    //   kCartQuantity: cartModel.cartQuantity,
-    //   kCartImg: cartModel.cartImg,
-    // });
+        _fireStoreInstance.collection(kOrderCollectionName).doc();
+
+    await _fireStoreInstance.collection(kOrderCollectionName).doc(ref.id).set({
+      'orderID': ref.id,
+      'orderMeatType': orderModel.orderMeatType,
+      'orderTotalPrice': orderModel.orderTotalPrice,
+      'orderAddress': orderModel.orderAddress,
+      'orderWeight': orderModel.orderWeight,
+    });
   }
 
   static Future<QuerySnapshot> getCarts() async {

@@ -1,21 +1,17 @@
 class ButcherModel {
   String butcherID;
-  String butcherEmail;
+  String butcherShopName;
   String butcherPhone;
   String butcherArea;
-  String butcherAddress;
-  String butcherShopName;
-  String butcherPassword;
-  String img;
+  String butcherMeatType;
+  String butcherMeatPrice;
 
   ButcherModel({
-    this.butcherID,
-    this.butcherEmail,
-    this.butcherPhone,
-    this.butcherAddress,
-    this.butcherPassword,
-    this.butcherArea,
     this.butcherShopName,
-    this.img,
+    this.butcherPhone,
+    this.butcherArea,
+    this.butcherMeatType,
+    this.butcherMeatPrice,
+    this.butcherID,
   });
 }

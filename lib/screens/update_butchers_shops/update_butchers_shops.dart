@@ -1,6 +1,4 @@
-import 'package:adahi_eidapp/models/butcher_model.dart';
 import 'package:adahi_eidapp/screens/admin_meat_shops/admin_meat_shops.dart';
-
 import 'package:adahi_eidapp/shared/app_enum.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:adahi_eidapp/shared/app_helper_widgets.dart';
@@ -146,8 +144,6 @@ class UpdateButchersShops extends StatelessWidget {
                             .updateButcherInfo(butcherDataAsMap: {
                           kButcherShopName:
                               butcherShopNameController.text.trim(),
-                          kButcherShopAddress:
-                              butcherShopAddressController.text.trim(),
                           kButcherPhone: butcherPhoneController.text.trim(),
                           kButcherArea: butcherShopAreaController.text.trim(),
                         }, butcherShopID: butcherSHopID);
