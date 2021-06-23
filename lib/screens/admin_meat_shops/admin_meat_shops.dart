@@ -3,6 +3,8 @@ import 'package:adahi_eidapp/screens/add_butchers_shops/add_butchers_shops.dart'
 import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/admin_meat_shops-states.dart';
 import 'package:adahi_eidapp/screens/admin_meat_shops/meat_cubit/admin_meat_shops_cubit.dart';
 import 'package:adahi_eidapp/screens/update_butchers_shops/update_butchers_shops.dart';
+import 'package:adahi_eidapp/screens/welcome_screen/welcome_screen.dart';
+import 'package:adahi_eidapp/shared/app_enum.dart';
 import 'package:adahi_eidapp/shared/app_helper_methods.dart';
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,32 @@ class AdminMeatShops extends StatelessWidget {
   Widget build(BuildContext context) => BlocProvider(
         create: (context) => AdminMeatShopsCubit()..loadAllMeatShopsForUser(),
         child: BlocConsumer<AdminMeatShopsCubit, AdminMeatShopsStates>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state is AdminMeatShopsLoadingState) {
+              showProgressDialog(
+                context: context,
+                text: 'please wait ...',
+              );
+            }
+
+            if (state is AdminMeatShopsSuccessState) {
+              Navigator.pop(context);
+              navigateTo(context, WelcomeScreen());
+              showToast(
+                massage: 'created',
+                color: ToastColors.SUCCESS,
+              );
+            }
+
+            if (state is AdminMeatShopsErrorState) {
+              Navigator.pop(context);
+              showProgressDialog(
+                context: context,
+                text: 'in use',
+                error: true,
+              );
+            }
+          },
           builder: (context, state) {
             List<ButcherModel> butchers =
                 AdminMeatShopsCubit.get(context).butchers;
