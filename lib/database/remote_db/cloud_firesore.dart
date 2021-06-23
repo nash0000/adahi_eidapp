@@ -55,6 +55,10 @@ class CloudService {
     return await _fireStoreInstance.collection(kButcherCollectionName).get();
   }
 
+  static Future<QuerySnapshot> getOrdersDetails() async {
+    return await _fireStoreInstance.collection(kOrderCollectionName).get();
+  }
+
   static Future<void> saveButcherInfo(
       {@required ButcherModel butcherModel}) async {
     DocumentReference ref =
